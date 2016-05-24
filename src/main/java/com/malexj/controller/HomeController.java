@@ -30,7 +30,7 @@ public class HomeController {
 
         AccountEntity loggedIn = accountService.findByAccountName(details.getUsername());
             System.err.println(loggedIn.getName());
-            return "login";
+            return "index";
         }
         return "index";
     }
