@@ -1,1 +1,19 @@
-deletePage.html
+<div class="row">
+    <div class="col s12">
+        <h5>Delete page</h5>
+    </div>
+    <form name="pageDeleteForm">
+        <div class="col s4">
+            <label class="black-text">
+                <select class="browser-default select_type" required=""
+                        ng-model="pageTypeDel"
+                        ng-options="pageTypeDel.type for pageTypeDel in pagesTypeDelete">
+                    <option value="" disabled="">Select type</option>
+                </select>
+            </label>
+        </div>
+        <div class="col s4">
+            <button ng-click="deletePage(pageDeleteForm, pageTypeDel)" class="btn">Delete</button>
+        </div>
+    </form>
+</div>

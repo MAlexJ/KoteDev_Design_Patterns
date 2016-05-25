@@ -1,6 +1,6 @@
 package com.malexj.component.users;
 
-import com.malexj.entity.AccountEntity;
+import com.malexj.model.AccountEntity;
 import com.malexj.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

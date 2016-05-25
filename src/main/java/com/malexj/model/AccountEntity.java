@@ -1,4 +1,6 @@
-package com.malexj.entity;
+package com.malexj.model;
+
+import com.malexj.model.enums.Roles;
 
 public class AccountEntity {
 

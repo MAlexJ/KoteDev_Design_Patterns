@@ -11,3 +11,7 @@ main {
 a {
     outline: 0;
 }
+
+.select_type{
+    height: 36px;
+}

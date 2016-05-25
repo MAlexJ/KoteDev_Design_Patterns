@@ -1,6 +1,6 @@
 package com.malexj.controller;
 
-import com.malexj.entity.AccountEntity;
+import com.malexj.model.AccountEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

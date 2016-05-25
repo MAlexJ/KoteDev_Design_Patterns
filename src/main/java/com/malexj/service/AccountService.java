@@ -1,7 +1,7 @@
 package com.malexj.service;
 
 
-import com.malexj.entity.AccountEntity;
+import com.malexj.model.AccountEntity;
 
 public interface AccountService {
 

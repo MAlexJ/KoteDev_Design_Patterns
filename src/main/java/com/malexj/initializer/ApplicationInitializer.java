@@ -7,6 +7,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -29,7 +30,6 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         WebApplicationContext context = getContext();
         servletContext.addListener(new ContextLoaderListener(context));
 
-        // фильтр, который будет определять наши реквесты и проверять валидность сессии
         servletContext.addFilter("springSecurityFilterChain",
                 new DelegatingFilterProxy("springSecurityFilterChain"))
                 .addMappingForUrlPatterns(null, false, "/*");
@@ -37,5 +37,10 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic servletRegistration = servletContext.addServlet(DISPATCHER, new DispatcherServlet(context));
         servletRegistration.addMapping(MAPPING_URL);
         servletRegistration.setLoadOnStartup(1);
+        servletRegistration.setMultipartConfig(getMultiPartConfigElement());
+    }
+
+    private MultipartConfigElement getMultiPartConfigElement() {
+        return new MultipartConfigElement("", 2000000, 10000000, 0);
     }
 }

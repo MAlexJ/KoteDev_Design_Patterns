@@ -1,4 +1,4 @@
-package com.malexj.entity;
+package com.malexj.model;
 
 public class CommentEntity {
     private Long id_pattern;

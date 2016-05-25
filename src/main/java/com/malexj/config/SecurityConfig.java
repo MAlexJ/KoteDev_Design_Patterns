@@ -44,14 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(handler)
-                .and()
-                .formLogin()
-                .successHandler(success)
-                .failureHandler(failure)
-                .and()
+//                .exceptionHandling().authenticationEntryPoint(handler)
+//                .and()
+//                .formLogin()
+//                .successHandler(success)
+//                .failureHandler(failure)
+//                .and()
                 .authorizeRequests()
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/**").permitAll();
     }
 }

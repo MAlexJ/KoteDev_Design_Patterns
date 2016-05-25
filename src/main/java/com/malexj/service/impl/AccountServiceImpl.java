@@ -1,7 +1,7 @@
 package com.malexj.service.impl;
 
-import com.malexj.entity.AccountEntity;
-import com.malexj.entity.Roles;
+import com.malexj.model.AccountEntity;
+import com.malexj.model.enums.Roles;
 import com.malexj.service.AccountService;
 import org.springframework.stereotype.Service;
 
