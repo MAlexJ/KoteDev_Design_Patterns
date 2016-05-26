@@ -2,13 +2,24 @@ package com.malexj.model.dto;
 
 import com.malexj.model.enums.Roles;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class AccountAllDTO {
+
+    @NotNull
+    @Size(min=1, max=30)
     private String name;
 
+    @NotNull
+    @Size(min=1, max=30)
     private String password;
 
+    @NotNull
+    @Size(min=3, max=30)
     private String email;
 
+    @NotNull
     private Roles role;
 
     public AccountAllDTO() {

@@ -1,11 +1,15 @@
 package com.malexj.controller;
 
+import com.malexj.exception.FailedCreateAccountException;
+import com.malexj.exception.NoFoundUserException;
 import com.malexj.model.dto.AccountAllDTO;
 import com.malexj.model.dto.AccountEmailDTO;
 import com.malexj.model.enums.Roles;
 import com.malexj.service.AccountService;
+import com.malexj.util.SendEmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +20,34 @@ public class RegisterController {
     @Autowired
     private AccountService accountService;
 
-    @ResponseStatus(HttpStatus.OK)
+    @Autowired
+    private SendEmailUtil emailUtil;
+
+
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public void register_POST(@RequestBody AccountAllDTO account) {
-        if (account.getName() != null
-                && account.getPassword() != null
-                && account.getEmail() != null) {
+    public ResponseEntity<?> register_POST(@RequestBody AccountAllDTO account) {
+        try {
             account.setRole(Roles.ROLE_USER);
-            accountService.saveDTO(account);
+            accountService.saveDTO(account);                                                                            //TODO FailedCreateAccountException!!! replace!!!
+//        } catch (FailedCreateAccountException e) {
+//            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {                                             //TODO Exception!!! replace!!!
+            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         }
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/restore", method = RequestMethod.POST)
-    public void restore_POST(@RequestBody AccountEmailDTO account) {
-        if (account.getEmail() != null) {
-            System.err.println(account);
+    public ResponseEntity<?> restore_POST(@RequestBody AccountEmailDTO account) {
+        try {
+            AccountAllDTO accountDTO = accountService.findByEmail(account.getEmail());
+            emailUtil.send(accountDTO);
+        } catch (NoFoundUserException e) {
+            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {                                             //TODO Exception!!! replace!!
+            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         }
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 
 }

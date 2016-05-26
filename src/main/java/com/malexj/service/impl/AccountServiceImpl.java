@@ -1,6 +1,7 @@
 package com.malexj.service.impl;
 
 
+import com.malexj.exception.NoFoundUserException;
 import com.malexj.model.dto.AccountAllDTO;
 import com.malexj.model.entity.AccountEntity;
 import com.malexj.repository.AccountRepository;
@@ -25,12 +26,22 @@ public class AccountServiceImpl implements AccountService {
         if (name.equals("flash")) {
             return new AccountAllDTO();
         }
-        return beanMapper.map(repository.findByName(name), AccountAllDTO.class);
+        AccountEntity account = repository.findByName(name);
+        return (account != null)
+                ? beanMapper.map(account, AccountAllDTO.class)
+                : null;
     }
 
     @Override
     public void saveDTO(AccountAllDTO accountDTO) {
         save(beanMapper.map(accountDTO, AccountEntity.class));
+    }
+
+    @Override
+    public AccountAllDTO findByEmail(String email) throws NoFoundUserException {
+        AccountEntity account = repository.findByEmail(email);
+        if (account == null) throw new NoFoundUserException();
+        return beanMapper.map(account, AccountAllDTO.class);
     }
 
     @Override

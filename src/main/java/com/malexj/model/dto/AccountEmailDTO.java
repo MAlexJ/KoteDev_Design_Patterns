@@ -1,6 +1,12 @@
 package com.malexj.model.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class AccountEmailDTO {
+
+    @NotNull
+    @Size(min = 5, max = 30)
     private String email;
 
     public AccountEmailDTO() {

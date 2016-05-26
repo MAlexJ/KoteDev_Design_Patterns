@@ -32,9 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureAuthBuilder(AuthenticationManagerBuilder builder) throws Exception {
-//        builder
-//                .inMemoryAuthentication()
-//                .withUser("admin").password("2222").authorities("ROLE_USER","ROLE_ADMIN");
+        builder
+                .inMemoryAuthentication()
+                .withUser("admin").password("2222").authorities("ROLE_USER", "ROLE_ADMIN");
         builder
                 .userDetailsService(userDetailService);
     }

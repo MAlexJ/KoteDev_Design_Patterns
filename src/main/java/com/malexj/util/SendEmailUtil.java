@@ -1,7 +1,13 @@
 package com.malexj.util;
 
-/**
- * Created by malex on 26.05.16.
- */
+import com.malexj.model.dto.AccountAllDTO;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SendEmailUtil {
+
+    public void send( AccountAllDTO accountDTO){
+        System.err.println("Send password: " + accountDTO);
+    }
+
 }
