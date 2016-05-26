@@ -29,29 +29,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailServiceImpl userDetailService;
 
+
     @Autowired
     public void configureAuthBuilder(AuthenticationManagerBuilder builder) throws Exception {
-        builder.userDetailsService(userDetailService);
-
+//        builder
+//                .inMemoryAuthentication()
+//                .withUser("admin").password("2222").authorities("ROLE_USER","ROLE_ADMIN");
         builder
-                .inMemoryAuthentication()
-//                .withUser("user").password("1111").authorities("ROLE_USER")
-//                .and()
-                .withUser("admin").password("2222").authorities("ROLE_USER","ROLE_ADMIN");
+                .userDetailsService(userDetailService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-//                .exceptionHandling().authenticationEntryPoint(handler)
-//                .and()
-//                .formLogin()
-//                .successHandler(success)
-//                .failureHandler(failure)
-//                .and()
+                .exceptionHandling().authenticationEntryPoint(handler)
+                .and()
+                .formLogin()
+                .successHandler(success)
+                .failureHandler(failure)
+                .and()
                 .authorizeRequests()
-//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/**").permitAll();
+
+//        .and()   http://stackoverflow.com/questions/28471770/auth-spring-security-java-configuration
+//                .logout()
+//                .logoutSuccessUrl("/")
+//                .deleteCookies("JSESSIONID")
+//                .invalidateHttpSession(true);
     }
 }

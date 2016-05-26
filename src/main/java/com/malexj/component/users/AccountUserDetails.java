@@ -1,6 +1,7 @@
 package com.malexj.component.users;
 
-import com.malexj.model.AccountEntity;
+
+import com.malexj.model.dto.AccountAllDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,9 +10,9 @@ import java.util.Collection;
 
 public class AccountUserDetails implements UserDetails {
 
-    private final AccountEntity account;
+    private final AccountAllDTO account;
 
-    public AccountUserDetails(AccountEntity account) {
+    public AccountUserDetails(AccountAllDTO account) {
         this.account = account;
     }
 

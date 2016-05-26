@@ -1,43 +1,60 @@
 package com.malexj.service.impl;
 
-import com.malexj.model.AccountEntity;
-import com.malexj.model.enums.Roles;
+
+import com.malexj.model.dto.AccountAllDTO;
+import com.malexj.model.entity.AccountEntity;
+import com.malexj.repository.AccountRepository;
 import com.malexj.service.AccountService;
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    private static List<AccountEntity> accountList;
+    @Autowired
+    private AccountRepository repository;
 
-    static {
-        accountList = new ArrayList<>();
+    @Autowired
+    private Mapper beanMapper;
 
-        AccountEntity admin = new AccountEntity();
-        admin.setId(1L);
-        admin.setName("admin");
-        admin.setPassword("1111");
-        admin.setRole(Roles.ROLE_ADMIN);
-        accountList.add(admin);
-
-        AccountEntity user = new AccountEntity();
-        user.setId(2L);
-        user.setName("user");
-        user.setPassword("1111");
-        user.setRole(Roles.ROLE_USER);
-        accountList.add(user);
-
+    @Override
+    public AccountAllDTO findByAccountName(String name) {
+        if (name.equals("flash")) {
+            return new AccountAllDTO();
+        }
+        return beanMapper.map(repository.findByName(name), AccountAllDTO.class);
     }
 
     @Override
-    public AccountEntity findByAccountName(String name) {
-        AccountEntity account = new AccountEntity();
-        account.setId(1L);
-        account.setName("admin");
-        account.setPassword("1111");
-        return account;
+    public void saveDTO(AccountAllDTO accountDTO) {
+        save(beanMapper.map(accountDTO, AccountEntity.class));
+    }
+
+    @Override
+    public AccountEntity save(AccountEntity entity) {
+        return repository.saveAndFlush(entity);
+    }
+
+    @Override
+    public AccountEntity update(AccountEntity entity) {
+        return repository.saveAndFlush(entity);
+    }
+
+    @Override
+    public void delete(Long id) {
+        repository.delete(id);
+    }
+
+    @Override
+    public AccountEntity find(Long id) {
+        return repository.findOne(id);
+    }
+
+    @Override
+    public List<AccountEntity> findAll() {
+        return repository.findAll();
     }
 }

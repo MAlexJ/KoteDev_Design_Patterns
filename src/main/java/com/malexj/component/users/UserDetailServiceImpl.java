@@ -1,6 +1,7 @@
 package com.malexj.component.users;
 
-import com.malexj.model.AccountEntity;
+
+import com.malexj.model.dto.AccountAllDTO;
 import com.malexj.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,11 +17,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AccountEntity account =service.findByAccountName(username);
-        if(account == null) {
+        AccountAllDTO account = service.findByAccountName(username);
+        if (account == null) {
             throw new UsernameNotFoundException("no user found with " + username);
         }
-
         return new AccountUserDetails(account);
     }
 }

@@ -44,8 +44,7 @@ public class PageEntity extends BaseEntity {
 
         PageEntity that = (PageEntity) o;
 
-        if (text != null ? !text.equals(that.text) : that.text != null) return false;
-        return type == that.type;
+        return text != null ? text.equals(that.text) : that.text == null && type == that.type;
 
     }
 
@@ -56,11 +55,4 @@ public class PageEntity extends BaseEntity {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "PageEntity{" +
-                "text='" + text + '\'' +
-                ", type=" + type +
-                '}';
-    }
 }
