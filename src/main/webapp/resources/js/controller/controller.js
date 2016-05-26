@@ -237,23 +237,9 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
                 $scope.resetEmptyUEmail = false;
             }, 1500);
         }
-
     };
-
-
 });
 
-myApp.controller('homeController', function ($scope, $http, $cookieStore) {
-
-});
-
-myApp.controller('patternsController', function ($scope, $http, $cookieStore) {
-
-});
-
-myApp.controller('aboutController', function ($scope, $http, $cookieStore) {
-
-});
 myApp.controller('patternsController', function ($scope, $http, $cookieStore, $timeout) {
 
     $scope.errorMessage = false;
@@ -295,5 +281,32 @@ myApp.controller('patternsController', function ($scope, $http, $cookieStore, $t
             }
         }
     };
+});
 
+myApp.controller('mainController', function ($scope, $http, $sce) {
+
+    // GET: html intro -> request get
+    $http.get('/intro').success(function (data) {
+        $scope.htmlIntro = data;
+        $scope.sceIntro = $sce;
+    });
+    
+    // GET: html behavioral -> request get
+    $http.get('/behavioral').success(function (data) {
+        $scope.htmlBehavioral = data;
+        $scope.sceBehavioral = $sce;
+    });
+    
+    // GET: html creational -> request get
+    $http.get('/creational').success(function (data) {
+        $scope.htmlCreational = data;
+        $scope.sceCreational = $sce;
+    });
+     
+    // GET: html structural -> request get
+    $http.get('/structural').success(function (data) {
+        $scope.htmlStructural = data;
+        $scope.sceStructural = $sce;
+    });   
+    
 });

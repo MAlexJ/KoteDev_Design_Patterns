@@ -1,0 +1,49 @@
+<div class="h_style_pattern">
+   <h2>Structural design patterns</h2>
+</div>
+            <p>
+                These design patterns are all about Class and Object composition. Structural class-creation patterns use
+                inheritance to compose interfaces. Structural object-patterns define ways to compose objects to obtain
+                new functionality.
+            </p>
+
+            <div class="item_pattern">
+                <p><b>Adapter</b></p>
+                Match interfaces of different classes
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Bridge</b></p>
+                Separates an object’s interface from its implementation
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Composite</b></p>
+                A tree structure of simple and composite objects
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Decorator</b></p>
+                Add responsibilities to objects dynamically
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Facade</b></p>
+                A single class that represents an entire subsystem
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Flyweight</b></p>
+                A fine-grained instance used for efficient sharing
+            </div>
+
+
+            <div class="item_pattern">
+                <p><b>Private Class Data</b></p>
+                Restricts accessor/mutator access
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Proxy</b></p>
+                An object representing another object
+            </div>

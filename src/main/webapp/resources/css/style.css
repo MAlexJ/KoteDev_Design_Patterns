@@ -2048,3 +2048,8 @@ xsigin/signup popup
     -moz-transition: opacity 0.2s 0, visibility 0 0;
     transition: opacity 0.2s 0, visibility 0 0;
 }
+
+.h_style_pattern {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

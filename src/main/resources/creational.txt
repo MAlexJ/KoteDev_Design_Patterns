@@ -1,0 +1,41 @@
+<div class="h_style_pattern">
+  <h2>Creational design patterns</h2>
+</div>
+            <p>
+                These design patterns are all about class instantiation. This pattern can be further divided into
+                class-creation patterns and object-creational patterns. While class-creation patterns use inheritance
+                effectively in the instantiation process, object-creation patterns use delegation effectively to get the
+                job
+                done.
+            </p>
+
+            <div class="item_pattern">
+                <p><b>Abstract Factory</b></p>
+                Creates an instance of several families of classes
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Builder</b></p>
+                Separates object construction from its representation
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Factory Method</b></p>
+                Creates an instance of several derived classes
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Object Pool</b></p>
+                Avoid expensive acquisition and release of resources
+                by recycling objects that are no longer in use
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Prototype</b></p>
+                A fully initialized instance to be copied or cloned
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Singleton</b></p>
+                A class of which only a single instance can exist
+            </div>

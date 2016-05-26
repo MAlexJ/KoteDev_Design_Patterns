@@ -56,6 +56,12 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
+    public PageAllDTO findPageDTO(PageType type) {
+
+        return beanMapper.map(repository.findByType(type), PageAllDTO.class);
+    }
+
+    @Override
     public PageEntity save(PageEntity entity) {
         return repository.saveAndFlush(entity);
     }
@@ -79,4 +85,6 @@ public class PageServiceImpl implements PageService {
     public List<PageEntity> findAll() {
         return repository.findAll();
     }
+
+
 }

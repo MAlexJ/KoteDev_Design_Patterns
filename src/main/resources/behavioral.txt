@@ -1,0 +1,59 @@
+<div class="h_style_pattern">
+   <h2>Behavioral design patterns</h2>
+</div>
+            <p>
+                These design patterns are all about Class's objects communication. Behavioral patterns are those
+                patterns
+                that are most specifically concerned with communication between objects.
+            </p>
+            <div class="item_pattern">
+                <p><b>Chain of responsibility</b></p>
+                A way of passing a request between a chain of objects
+            </div>
+            <div class="item_pattern">
+                <p><b>Command</b></p>
+                Encapsulate a command request as an object
+            </div>
+            <div class="item_pattern">
+                <p><b>Interpreter</b></p>
+                A way to include language elements in a program
+            </div>
+            <div class="item_pattern">
+                <p><b>Iterator</b></p>
+                Sequentially access the elements of a collection
+            </div>
+            <div class="item_pattern">
+                <p><b>Mediator</b></p>
+                Defines simplified communication between classes
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Memento</b></p>
+                Capture and restore an object's internal state
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Null Object</b></p>
+                Designed to act as a default value of an object
+            </div>
+
+            <div class="item_pattern">
+                <p><b>Observer</b></p>
+                A way of notifying change to a number of classes
+            </div>
+            <div class="item_pattern">
+                <p><b>State</b></p>
+                Alter an object's behavior when its state changes
+            </div>
+            <div class="item_pattern">
+                <p><b>Strategy</b></p>
+                Encapsulates an algorithm inside a class
+            </div>
+            <div class="item_pattern">
+                <p><b>Template method</b></p>
+                Defer the exact steps of an algorithm to a subclass
+            </div>
+            <div class="item_pattern">
+                <p><b>Visitor</b></p>
+                Defines a new operation to a class without change
+            </div>

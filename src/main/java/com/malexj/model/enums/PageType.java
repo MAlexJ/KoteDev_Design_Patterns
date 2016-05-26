@@ -1,5 +1,5 @@
 package com.malexj.model.enums;
 
 public enum  PageType {
-    INTRO,CREATIONAL,STRUCTURAL, BEHAVIORAL, ABOUT
+    INTRO,CREATIONAL,STRUCTURAL, BEHAVIORAL
 }

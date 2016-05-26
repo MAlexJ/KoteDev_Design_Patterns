@@ -12,4 +12,6 @@ public interface PageRepository extends JpaRepository<PageEntity, Long> {
     @Query("SELECT p.type FROM PageEntity p")
     List<PageType> findType();
 
+    PageEntity findByType(PageType type);
+
 }

@@ -10,6 +10,12 @@ public class PageAllDTO {
     public PageAllDTO() {
     }
 
+    public PageAllDTO(Long id, String text, PageType type) {
+        this.id = id;
+        this.text = text;
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }

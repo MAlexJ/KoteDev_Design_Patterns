@@ -33,4 +33,6 @@ public interface PageService {
 
     List<PageEntity> findAll();
 
+    PageAllDTO findPageDTO(PageType type);
+
 }
