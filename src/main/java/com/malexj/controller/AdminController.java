@@ -20,6 +20,12 @@ public class AdminController {
         return "admin/adminHome";
     }
 
+        // Home
+    @RequestMapping(path = "/viewUsers", method = RequestMethod.GET)
+    public String admin_users(){
+        return "admin/viewUsers";
+    }
+
     // Page
     @RequestMapping(path = "/createPage", method = RequestMethod.GET)
     public String admin_page_create(){

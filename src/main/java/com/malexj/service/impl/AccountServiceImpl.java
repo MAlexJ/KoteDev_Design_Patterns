@@ -4,6 +4,7 @@ package com.malexj.service.impl;
 import com.malexj.exception.FailedCreateAccountException;
 import com.malexj.exception.NoFoundUserException;
 import com.malexj.model.dto.AccountAllDTO;
+import com.malexj.model.dto.AccountIdAndNameDTO;
 import com.malexj.model.entity.AccountEntity;
 import com.malexj.repository.AccountRepository;
 import com.malexj.service.AccountService;
@@ -11,6 +12,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,6 +49,21 @@ public class AccountServiceImpl implements AccountService {
         AccountEntity account = repository.findByEmail(email);
         if (account == null) throw new NoFoundUserException();
         return beanMapper.map(account, AccountAllDTO.class);
+    }
+
+    @Override
+    public List<AccountIdAndNameDTO> findAllDTO() {
+        List<AccountIdAndNameDTO> accountDTO = new ArrayList<>();
+        List<AccountEntity> account = findAll();
+        for(AccountEntity item:account){
+            accountDTO.add(beanMapper.map(item, AccountIdAndNameDTO.class));
+        }
+        return accountDTO;
+    }
+
+    @Override
+    public AccountAllDTO findById(Long id) {
+        return beanMapper.map(find(id), AccountAllDTO.class);
     }
 
     @Override

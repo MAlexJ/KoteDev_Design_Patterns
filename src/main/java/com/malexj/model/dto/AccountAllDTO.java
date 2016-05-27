@@ -1,6 +1,7 @@
 package com.malexj.model.dto;
 
 import com.malexj.model.enums.Roles;
+import com.malexj.model.enums.UserStatus;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,6 +22,9 @@ public class AccountAllDTO {
 
     @NotNull
     private Roles role;
+
+    @NotNull
+    private UserStatus status;
 
     public AccountAllDTO() {
     }
@@ -57,6 +61,14 @@ public class AccountAllDTO {
         this.role = role;
     }
 
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,7 +79,8 @@ public class AccountAllDTO {
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        return role == that.role;
+        if (role != that.role) return false;
+        return status == that.status;
 
     }
 
@@ -77,16 +90,7 @@ public class AccountAllDTO {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "AccountAllDTO{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", role=" + role +
-                '}';
     }
 }

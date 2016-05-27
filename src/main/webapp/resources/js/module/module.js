@@ -5,6 +5,10 @@ var myApp = angular.module('myApp', ['ngCookies']);
 
 var myAdmin = angular.module('myAdmin', ["ngRoute"]).config(function ($routeProvider) {
 
+    $(document).ready(function() {
+        Materialize.updateTextFields();
+    });
+
     // ************  Home Page  ******************
     $routeProvider.when('/home',
         {
@@ -12,6 +16,13 @@ var myAdmin = angular.module('myAdmin', ["ngRoute"]).config(function ($routeProv
             controller: 'adminHomeController'
         });
 
+    // ************  Pages Page  ******************
+    $routeProvider.when('/viewUsers',
+        {
+            templateUrl: './admin/viewUsers.html',
+            controller: 'adminUsersController'
+        });
+    
     // ************  Pages Page  ******************
     $routeProvider.when('/createPage',
         {

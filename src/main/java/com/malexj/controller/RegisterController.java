@@ -5,6 +5,7 @@ import com.malexj.exception.NoFoundUserException;
 import com.malexj.model.dto.AccountAllDTO;
 import com.malexj.model.dto.AccountEmailDTO;
 import com.malexj.model.enums.Roles;
+import com.malexj.model.enums.UserStatus;
 import com.malexj.service.AccountService;
 import com.malexj.util.SendEmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ public class RegisterController {
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register_POST(@RequestBody AccountAllDTO account) {
         try {
-//            account.setRole(Roles.ROLE_USER);
-            accountService.saveDTO(account);                                                                            //TODO FailedCreateAccountException!!! replace!!!
+            account.setRole(Roles.ROLE_USER);
+            account.setStatus(UserStatus.ACTIVE);
+            accountService.saveDTO(account);
         } catch (FailedCreateAccountException e) {
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {

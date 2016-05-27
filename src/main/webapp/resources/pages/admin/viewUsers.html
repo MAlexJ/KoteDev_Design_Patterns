@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col s12">
+        <h5>Users</h5>
+    </div>
+
+    <div class="col s4">
+        <label class="black-text">
+            <select class="browser-default select_type" required=""
+                    ng-model="viewUser"
+                    ng-options="viewUser.name for viewUser in viewUsers">
+                <option value="" disabled="">Select type</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="col s4">
+        <button ng-click="selectUser(viewUser)" class="btn">Select</button>
+        <p></p>
+    </div>
+    <div class="col s8"></div>
+    <div class="input-field col s4">
+        <input placeholder="UserName" ng-model="actualUser.name" id="user_name" type="text" class="validate" />
+        <label class="active" for="user_name">UserName</label>
+    </div>
+
+    <div class="input-field col s10"></div>
+    <div class="input-field col s4">
+        <input placeholder="Password" ng-model="actualUser.password" id="user_password" type="text" class="validate" />
+        <label class="active" for="user_password">Password</label>
+    </div>
+
+    <div class="input-field col s10"></div>
+    <div class="input-field col s4">
+        <input placeholder="Email" ng-model="actualUser.email" id="user_email" type="text" class="validate" />
+        <label class="active" for="user_email">Email</label>
+    </div>
+
+    <div class="input-field col s10"></div>
+    <div class="input-field col s4">
+        <input placeholder="Role" ng-model="actualUser.role" id="user_type" type="text" class="validate" />
+        <label class="active" for="user_type">Role</label>
+    </div>
+
+    <div class="input-field col s10"></div>
+    <div class="input-field col s4">
+        <input placeholder="Status" ng-model="actualUser.status" id="user_status" type="text" class="validate" />
+        <label class="active" for="user_status">Status</label>
+    </div>
+
+</div>
+
+

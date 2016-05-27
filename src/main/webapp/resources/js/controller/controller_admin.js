@@ -3,7 +3,32 @@
 // Home
 myAdmin.controller('adminHomeController', function ($scope, $http) {
 });
-//Page
+
+// Users
+myAdmin.controller('adminUsersController', function ($scope, $http) {
+
+    // GET: list users -> request get
+    $http.get('/admin/getUsers').success(function (data) {
+        $scope.viewUsers = data;
+    }).error(function (data, status) {
+        console.log("код ответа: " + status);
+    });
+
+    // selectUser(viewUser)
+    $scope.selectUser = function (viewUser) {
+        if (viewUser.id > 0) {
+            $http.get('/admin/getUser/' + viewUser.id)
+                .success(function (data) {
+                    $scope.actualUser = data;
+                })
+                .error(function (status) {
+                    console.log("код ответа: " + status);
+                });
+        }
+    }
+});
+
+// Page
 myAdmin.controller('adminCreatePageController', function ($scope, $http) {
 
     // GET: list page typ -> request get
@@ -57,8 +82,8 @@ myAdmin.controller('adminUpdatePageController', function ($scope, $http) {
     };
 
     $scope.updateUpdatePage = function (pageUpdateForm, pagesTextUpdate) {
-        if(pageUpdateForm.$valid){   
-            
+        if (pageUpdateForm.$valid) {
+
             var _update = {
                 id: pagesTextUpdate.id,
                 text: pagesTextUpdate.text,
@@ -103,10 +128,11 @@ myAdmin.controller('adminDeletePageController', function ($scope, $http) {
     }
 });
 
-//Pattern
+// Pattern
 myAdmin.controller('adminCreatePatternController', function ($scope, $http) {
 });
 myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
 });
 myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
 });
+

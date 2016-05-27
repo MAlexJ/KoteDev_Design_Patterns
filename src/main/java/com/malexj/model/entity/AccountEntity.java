@@ -2,6 +2,7 @@ package com.malexj.model.entity;
 
 import com.malexj.model.entity.base.BaseEntity;
 import com.malexj.model.enums.Roles;
+import com.malexj.model.enums.UserStatus;
 
 import javax.persistence.*;
 
@@ -22,8 +23,9 @@ public class AccountEntity extends BaseEntity {
     @Column(name = "role", nullable = false)
     private Roles role;
 
-    public AccountEntity() {
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private UserStatus status;
 
     public String getName() {
         return name;
@@ -57,15 +59,26 @@ public class AccountEntity extends BaseEntity {
         this.role = role;
     }
 
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         AccountEntity that = (AccountEntity) o;
-        return name != null ? name.equals(that.name) :
-                that.name == null && (password != null ? password.equals(that.password)
-                        : that.password == null && (email != null ? email.equals(that.email) :
-                        that.email == null && role == that.role));
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (role != that.role) return false;
+        return status == that.status;
 
     }
 
@@ -75,6 +88,7 @@ public class AccountEntity extends BaseEntity {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 }
