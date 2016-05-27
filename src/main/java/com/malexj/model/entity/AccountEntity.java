@@ -5,6 +5,7 @@ import com.malexj.model.enums.Roles;
 import com.malexj.model.enums.UserStatus;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "account")
@@ -26,6 +27,12 @@ public class AccountEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private UserStatus status;
+
+    @OneToMany(mappedBy = "account")
+    private List<CommentEntity> comments;
+
+    public AccountEntity() {
+    }
 
     public String getName() {
         return name;
@@ -67,6 +74,14 @@ public class AccountEntity extends BaseEntity {
         this.status = status;
     }
 
+    public List<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentEntity> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,7 +93,8 @@ public class AccountEntity extends BaseEntity {
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (role != that.role) return false;
-        return status == that.status;
+        if (status != that.status) return false;
+        return comments != null ? comments.equals(that.comments) : that.comments == null;
 
     }
 
@@ -89,6 +105,7 @@ public class AccountEntity extends BaseEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (comments != null ? comments.hashCode() : 0);
         return result;
     }
 }

@@ -1,6 +1,6 @@
 package com.malexj.controller;
 
-import com.malexj.model.CommentEntity;
+import com.malexj.model.entity.CommentEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
