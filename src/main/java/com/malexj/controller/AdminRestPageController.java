@@ -5,7 +5,7 @@ import com.malexj.model.dto.PageDTO;
 import com.malexj.model.dto.PageIdAndTypeDTO;
 import com.malexj.model.enums.PageType;
 import com.malexj.service.impl.PageServiceImpl;
-import com.malexj.util.ConvertToListPageType;
+import com.malexj.util.ConvertToListPageTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +25,7 @@ public class AdminRestPageController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<PageType> admin_page_type() {
-        return new ConvertToListPageType().convert(pageService.findType());
+        return new ConvertToListPageTypeUtil().convert(pageService.findType());
     }
 
     @ResponseStatus(HttpStatus.OK)

@@ -23,15 +23,14 @@ public class RegisterController {
     @Autowired
     private SendEmailUtil emailUtil;
 
-
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register_POST(@RequestBody AccountAllDTO account) {
         try {
-            account.setRole(Roles.ROLE_USER);
+//            account.setRole(Roles.ROLE_USER);
             accountService.saveDTO(account);                                                                            //TODO FailedCreateAccountException!!! replace!!!
-//        } catch (FailedCreateAccountException e) {
-//            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-        } catch (Exception e) {                                             //TODO Exception!!! replace!!!
+        } catch (FailedCreateAccountException e) {
+            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         }
         return new ResponseEntity<String>(HttpStatus.OK);
@@ -44,7 +43,7 @@ public class RegisterController {
             emailUtil.send(accountDTO);
         } catch (NoFoundUserException e) {
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-        } catch (Exception e) {                                             //TODO Exception!!! replace!!
+        } catch (Exception e) {
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         }
         return new ResponseEntity<String>(HttpStatus.OK);

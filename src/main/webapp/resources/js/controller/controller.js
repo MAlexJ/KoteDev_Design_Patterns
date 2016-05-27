@@ -2,9 +2,8 @@
 
 myApp.controller('loginController', function ($scope, $http, $cookieStore, $timeout) {
 
-    
     $timeout(function () {
-        $scope.startApp=true;
+        $scope.startApp = true;
     }, 900);
 
     // 1. Login:
@@ -18,6 +17,7 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
     //2. Register: 
     // Validate UserName
     $scope.regValidUserName = false;
+    $scope.regExistUser = false;
     // Validate Email
     $scope.regValidUEmail = false;
     // Validate Password
@@ -123,18 +123,22 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
                         password: reg.password,
                         email: reg.email
                     };
-                    $http.post('/register', account).success(function (status) {
-                        $('.cd-user-modal').removeClass('is-visible');
-                        $timeout(function () {
-                            $scope.reg.name = '';
-                            $scope.reg.password = '';
-                            $scope.reg.email = '';
-                            $scope.reg = undefined;
-                        }, 1200);
-                    }).error(function (status) {
-                        console.log("error код ответа: " + status);
-                        // error 403
-                    });
+                    $http.post('/register', account)
+                        .success(function (status) {
+                            $('.cd-user-modal').removeClass('is-visible');
+                            $timeout(function () {
+                                $scope.reg.name = '';
+                                $scope.reg.password = '';
+                                $scope.reg.email = '';
+                                $scope.reg = undefined;
+                            }, 1200);
+                        })
+                        .error(function () {                          
+                            $scope.regExistUser = true;
+                            $timeout(function () {
+                                $scope.regExistUser = false;
+                            }, 1500);
+                        });
                 }
 
                 if (reg.name == '') {
@@ -205,17 +209,19 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
                         var restore = {
                             email: rest.email
                         };
-                        $http.post('/restore', restore).success(function (status) {
-                            $('.cd-user-modal').removeClass('is-visible');
-                            $scope.rest.email = '';
-                            $scope.rest = undefined;
-                        }).error(function () {
-                            $scope.resetFindValidUEmail = true;
-                            $timeout(function () {
-                                $scope.resetFindValidUEmail = false;
-                            }, 1500);
-                        });
-                    }else {
+                        $http.post('/restore', restore)
+                            .success(function (status) {
+                                $('.cd-user-modal').removeClass('is-visible');
+                                $scope.rest.email = '';
+                                $scope.rest = undefined;
+                            })
+                            .error(function () {
+                                $scope.resetFindValidUEmail = true;
+                                $timeout(function () {
+                                    $scope.resetFindValidUEmail = false;
+                                }, 1500);
+                            });
+                    } else {
                         $scope.resetNotValidUEmail = true;
                         $timeout(function () {
                             $scope.resetNotValidUEmail = false;
@@ -290,23 +296,23 @@ myApp.controller('mainController', function ($scope, $http, $sce) {
         $scope.htmlIntro = data;
         $scope.sceIntro = $sce;
     });
-    
+
     // GET: html behavioral -> request get
     $http.get('/behavioral').success(function (data) {
         $scope.htmlBehavioral = data;
         $scope.sceBehavioral = $sce;
     });
-    
+
     // GET: html creational -> request get
     $http.get('/creational').success(function (data) {
         $scope.htmlCreational = data;
         $scope.sceCreational = $sce;
     });
-     
+
     // GET: html structural -> request get
     $http.get('/structural').success(function (data) {
         $scope.htmlStructural = data;
         $scope.sceStructural = $sce;
-    });   
-    
+    });
+
 });

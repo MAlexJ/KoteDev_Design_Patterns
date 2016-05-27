@@ -1,6 +1,7 @@
 package com.malexj.service.impl;
 
 
+import com.malexj.exception.FailedCreateAccountException;
 import com.malexj.exception.NoFoundUserException;
 import com.malexj.model.dto.AccountAllDTO;
 import com.malexj.model.entity.AccountEntity;
@@ -33,8 +34,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void saveDTO(AccountAllDTO accountDTO) {
-        save(beanMapper.map(accountDTO, AccountEntity.class));
+    public void saveDTO(AccountAllDTO accountDTO) throws FailedCreateAccountException {
+        AccountEntity account = save(beanMapper.map(accountDTO, AccountEntity.class));
+        if (account == null) {
+            throw new FailedCreateAccountException();
+        }
+
     }
 
     @Override

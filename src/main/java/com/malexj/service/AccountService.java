@@ -1,6 +1,7 @@
 package com.malexj.service;
 
 
+import com.malexj.exception.FailedCreateAccountException;
 import com.malexj.exception.NoFoundUserException;
 import com.malexj.model.dto.AccountAllDTO;
 import com.malexj.model.entity.AccountEntity;
@@ -12,7 +13,7 @@ public interface AccountService {
     //DTO
     AccountAllDTO findByAccountName(String name);
 
-    void saveDTO(AccountAllDTO accountDTO);
+    void saveDTO(AccountAllDTO accountDTO) throws FailedCreateAccountException;
 
     AccountAllDTO findByEmail(String email) throws NoFoundUserException;
 

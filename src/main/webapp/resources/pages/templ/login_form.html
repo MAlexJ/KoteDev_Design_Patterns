@@ -40,6 +40,7 @@
                     <input ng-model="reg.name" class="full-width has-padding has-border"
                            type="text" placeholder="Username"/>
                     <span ng-show="regValidUserName" class="cd-error-message">The field of username is empty!</span>
+                    <span ng-show="regExistUser" class="cd-error-message">User already exists!</span>
                 </p>
 
                 <p class="fieldset">
