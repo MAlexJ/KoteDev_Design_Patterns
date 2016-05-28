@@ -9,6 +9,20 @@ var myAdmin = angular.module('myAdmin', ["ngRoute"]).config(function ($routeProv
         Materialize.updateTextFields();
     });
 
+    $(".button-collapse").sideNav();
+
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+
+
+    $(document).ready(function() {
+        $('input#text, textarea#textarea').characterCounter();
+    });
+
+
+
     // ************  Home Page  ******************
     $routeProvider.when('/home',
         {
@@ -40,6 +54,13 @@ var myAdmin = angular.module('myAdmin', ["ngRoute"]).config(function ($routeProv
         {
             templateUrl: './admin/deletePage.html',
             controller: 'adminDeletePageController'
+        });
+
+    // ************  Image Page  ******************
+    $routeProvider.when('/image',
+        {
+            templateUrl: './admin/image.html',
+            controller: 'adminImageController'
         });
     
     // ************  Patterns Page  ******************

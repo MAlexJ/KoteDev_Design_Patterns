@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="row">
+    <div class="col s12 ">
+        <h5>Image Block</h5>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col s12 m12 l4">
+        <!--Create Image-->
+        <div th:replace="admin_fragments/admin_create_image :: admin_create_image"></div>
+    </div>
+
+    <div class="col s12  m12 l4">
+        <!--Delete image-->
+        <div th:replace="admin_fragments/admin_delete_image :: admin_delete_image"></div>
+        <!--Find Image-->
+        <div th:replace="admin_fragments/admin_find_image :: admin_find_image"></div>
+    </div>
+
+    <div class="col s12  m12 l4">
+        <!--Preview Image-->
+        <div th:replace="admin_fragments/admin_preview_image :: admin_preview_image"></div>
+    </div>
+</div>
+</html>

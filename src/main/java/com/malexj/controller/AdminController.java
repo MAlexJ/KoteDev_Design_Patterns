@@ -43,6 +43,12 @@ public class AdminController {
     }
 
     // Pattern
+    @RequestMapping(path = "/image", method = RequestMethod.GET)
+    public String admin_image(){
+        return "admin/image";
+    }
+
+    // Pattern
     @RequestMapping(path = "/createPattern", method = RequestMethod.GET)
     public String admin_pattern_create(){
         return "admin/createPattern";

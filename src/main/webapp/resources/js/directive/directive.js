@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.directive('bsActiveLink', ['$location', function ($location) {
+myAdmin.directive('bsActiveLink', ['$location', function ($location) {
     return {
         restrict: 'A', //use as attribute
         replace: false,
@@ -23,7 +23,7 @@ myApp.directive('bsActiveLink', ['$location', function ($location) {
     }
 }]);
 
-myApp.directive('fileModel', ['$parse', function ($parse) {
+myAdmin.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -58,3 +58,10 @@ myAdmin.directive('activeLink', ['$location', function (location) {
 
     };
 }]);
+
+myAdmin.directive('imgRender', function () {
+    return {
+        restrict: 'AE',
+        template: '<img src="data:image/png;base64,{{image.img}}">'
+    }
+});

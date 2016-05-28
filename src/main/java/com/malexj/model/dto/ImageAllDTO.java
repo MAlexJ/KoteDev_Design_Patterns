@@ -1,30 +1,16 @@
-package com.malexj.model.entity;
+package com.malexj.model.dto;
 
-import com.malexj.model.entity.base.BaseEntity;
-import org.hibernate.annotations.Type;
-
-import javax.persistence.*;
 import java.util.Arrays;
 
-@Entity
-@Table(name = "image")
-public class ImageEntity extends BaseEntity {
+public class ImageAllDTO {
 
-    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Lob
-    @Column(name = "img", nullable = false)
-    @Type(type = "org.hibernate.type.BinaryType")
     private byte[] img;
 
-    @OneToOne(mappedBy = "image")
-    private PatternEntity pattern;
-
-    @Column(name = "available", nullable = false)
     private boolean isAvailable;
 
-    public ImageEntity() {
+    public ImageAllDTO() {
     }
 
     public String getName() {
@@ -43,14 +29,6 @@ public class ImageEntity extends BaseEntity {
         this.img = img;
     }
 
-    public PatternEntity getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(PatternEntity pattern) {
-        this.pattern = pattern;
-    }
-
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -64,12 +42,11 @@ public class ImageEntity extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ImageEntity that = (ImageEntity) o;
+        ImageAllDTO that = (ImageAllDTO) o;
 
         if (isAvailable != that.isAvailable) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (!Arrays.equals(img, that.img)) return false;
-        return pattern != null ? pattern.equals(that.pattern) : that.pattern == null;
+        return Arrays.equals(img, that.img);
 
     }
 
@@ -77,7 +54,6 @@ public class ImageEntity extends BaseEntity {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + Arrays.hashCode(img);
-        result = 31 * result + (pattern != null ? pattern.hashCode() : 0);
         result = 31 * result + (isAvailable ? 1 : 0);
         return result;
     }

@@ -128,6 +128,87 @@ myAdmin.controller('adminDeletePageController', function ($scope, $http) {
     }
 });
 
+// Image
+myAdmin.controller('adminImageController', function ($scope, $http) {
+
+    //Get list actual images
+    $http.get('/admin/images')
+        .success(function (data) {
+            $scope.imagesDel = data;
+            $scope.imagesPrev = data;
+        })
+        .error(function (data, status) {
+            console.log("код ответа: " + status);
+        });
+
+
+    // POST: image -> click to button
+    $scope.uploadFile = function (imgForm, imgRadio, imgFile) {
+        if (imgForm.$valid && imgRadio.name == true) {
+            var fd = new FormData();
+            fd.append('file', imgFile);
+            $http.post("/admin/createImage", fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+                .success(function () {
+                    Materialize.toast('The image is added to the database', 3000, 'rounded');
+                    //Get list actual images
+                    $http.get('/admin/images')
+                        .success(function (data) {
+                            $scope.imagesDel = data;
+                            $scope.imagesPrev = data;
+                        })
+                        .error(function (data, status) {
+                            console.log("код ответа: " + status);
+                        });
+                })
+                .error(function () {
+                    Materialize.toast('The image is not added in the database!!!', 3000, '')
+                });
+            $scope.imgRadio.name = false;
+        } else {
+            Materialize.toast('Please upload image!!!', 3000, '')
+        }
+    };
+
+    //DELETE
+    $scope.deleteImg = function (selectOptDel) {
+        if (selectOptDel > 0) {
+            $http.delete('/admin/deleteImage/' + selectOptDel)
+                .success(function () {
+                    Materialize.toast('Delete image id:' + selectOptDel, 3000, 'rounded');
+                    //UPDATE ALL RESOURCE
+                    // repeat: get list
+                    $http.get('/admin/images')
+                        .success(function (data) {
+                            $scope.imagesDel = data;
+                            $scope.imagesPrev = data;
+                        })
+                        .error(function (data, status) {
+                            console.log("код ответа: " + status);
+                        }); 
+                });
+        }
+        else {
+            Materialize.toast('Please select image!!!', 3000, '')
+        }
+    };
+
+    //GET -> ID
+    $scope.findImg = function (selectOptFind) {
+        if (selectOptFind > 0) {
+            $http.get('/admin/viewImage/' + selectOptFind).success(function (data) {
+                $scope.imageViewId = data;
+            });
+        }
+        else {
+            Materialize.toast('Please select image!!!', 3000, '')
+        }
+    };
+
+});
+
 // Pattern
 myAdmin.controller('adminCreatePatternController', function ($scope, $http) {
 });
