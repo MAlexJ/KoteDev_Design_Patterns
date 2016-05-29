@@ -15,6 +15,8 @@ public interface ImageService {
 
     ImageAllDTO findOneDTO(Long id);
 
+    List<ImageIdAndNameDTO> findByIsAvailableDTO(boolean available);
+
     //Image
     ImageEntity save(ImageEntity entity);
 
@@ -25,5 +27,4 @@ public interface ImageService {
     ImageEntity findOne(Long id);
 
     List<ImageEntity> findAll();
-
 }

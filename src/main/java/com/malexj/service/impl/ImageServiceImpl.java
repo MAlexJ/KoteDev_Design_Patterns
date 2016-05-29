@@ -42,6 +42,16 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public List<ImageIdAndNameDTO> findByIsAvailableDTO(boolean available) {
+        List<ImageIdAndNameDTO> dtoList = new ArrayList<>();
+        List<ImageEntity> imageList = repository.findByIsAvailable(available);
+        for (ImageEntity entity : imageList) {
+            dtoList.add(beanMapper.map(entity, ImageIdAndNameDTO.class));
+        }
+        return dtoList;
+    }
+
+    @Override
     public ImageEntity save(ImageEntity entity) {
         return repository.saveAndFlush(entity);
     }

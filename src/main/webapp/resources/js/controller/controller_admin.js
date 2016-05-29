@@ -211,6 +211,19 @@ myAdmin.controller('adminImageController', function ($scope, $http) {
 
 // Pattern
 myAdmin.controller('adminCreatePatternController', function ($scope, $http) {
+    $scope.patternType =['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
+    
+    //imagesPattern
+
+    //Get list available images
+    $http.get('/admin/imagesPattern')
+        .success(function (data) {
+            $scope.imagesAvailable = data;            
+        })
+        .error(function (data, status) {
+            console.log("код ответа: " + status);
+        });
+    
 });
 myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
 });
