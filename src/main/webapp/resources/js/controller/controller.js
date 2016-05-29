@@ -210,7 +210,7 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
                             email: rest.email
                         };
                         $http.post('/restore', restore)
-                            .success(function (status) {
+                            .success(function () {
                                 $('.cd-user-modal').removeClass('is-visible');
                                 $scope.rest.email = '';
                                 $scope.rest = undefined;
