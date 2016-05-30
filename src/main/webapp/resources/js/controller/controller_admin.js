@@ -187,7 +187,7 @@ myAdmin.controller('adminImageController', function ($scope, $http) {
                         })
                         .error(function (data, status) {
                             console.log("код ответа: " + status);
-                        }); 
+                        });
                 });
         }
         else {
@@ -211,19 +211,51 @@ myAdmin.controller('adminImageController', function ($scope, $http) {
 
 // Pattern
 myAdmin.controller('adminCreatePatternController', function ($scope, $http) {
-    $scope.patternType =['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
-    
-    //imagesPattern
+    $scope.patternType = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
 
     //Get list available images
     $http.get('/admin/imagesPattern')
         .success(function (data) {
-            $scope.imagesAvailable = data;            
+            $scope.imagesAvailable = data;
         })
         .error(function (data, status) {
             console.log("код ответа: " + status);
         });
-    
+
+    // POST: Create Pattern
+    $scope.createPattern = function (patternCreateForm, pattern, imageTypePatternCreate) {
+        if (patternCreateForm.$valid
+            && pattern.text != ''
+            && pattern.title != ''
+            && imageTypePatternCreate.id > 0) {
+            $http.post("/admin/createPattern",
+                "id_image=" + imageTypePatternCreate.id +
+                "&tag=" + pattern.tag +
+                "&title=" + pattern.title +
+                "&text=" + pattern.text,
+                {
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                })
+                .success(function () {
+                    $scope.pattern.tag = '';
+                    $scope.pattern.title = '';
+                    $scope.pattern.text = '';
+                    //Get list available images
+                    $http.get('/admin/imagesPattern')
+                        .success(function (data) {
+                            $scope.imagesAvailable = data;
+                        })
+                        .error(function (data, status) {
+                            console.log("код ответа: " + status);
+                        });
+                    Materialize.toast('The pattern is added to the database', 3000, 'rounded');
+                })
+                .error(function () {
+                    Materialize.toast('The pattern is not added in the database!!!', 3000, '')
+                });
+        }
+    };
+
 });
 myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
 });

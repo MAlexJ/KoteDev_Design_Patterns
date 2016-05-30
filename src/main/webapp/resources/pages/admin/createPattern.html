@@ -6,7 +6,7 @@
         <div class="col s4">
             <label class="black-text">
                 <select class="browser-default select_type" required=""
-                        ng-model="patternCreate.type"
+                        ng-model="pattern.tag"
                         ng-options="patternTypeCr for patternTypeCr in patternType">
                     <option value="" disabled="">Select type</option>
                 </select>
@@ -15,11 +15,18 @@
         <div class="col s10">
             <p></p>
         </div>
+        <div class="input-field col s4">
+            <input placeholder="Title" ng-model="pattern.title" id="title_name" type="text" required="" class="validate" />
+            <label class="active" for="title_name">Title</label>
+        </div>
+        <div class="col s10">
+            <p></p>
+        </div>
         <div class="col s4">
             <label class="black-text">
                 <select class="browser-default select_type" required=""
-                        ng-model="imageCreate.id"
-                        ng-options="imageTypeCr.name for imageTypeCr in imagesAvailable">
+                        ng-model="imageTypePatternCreate"
+                        ng-options="imageTypePatternCreate.name for imageTypePatternCreate in imagesAvailable">
                     <option value="" disabled="">Select image</option>
                 </select>
             </label>
@@ -27,13 +34,13 @@
 
         <div class="input-field col s12 black-text">
             <div class="input-field">
-                <textarea ng-model="pageCreate.text" id="textarea1" class="materialize-textarea" required=""></textarea>
+                <textarea ng-model="pattern.text" id="textarea1" class="materialize-textarea" required=""></textarea>
                 <label for="textarea1" class="black-text">Textarea</label>
             </div>
         </div>
         <div class="col s12 m12 l12">
             <div class="input-field">
-                <button ng-click="createPattern(patternCreateForm, patternCreate, imageCreate)" class="btn">CREATE</button>
+                <button ng-click="createPattern(patternCreateForm, pattern, imageTypePatternCreate)" class="btn">CREATE</button>
             </div>
         </div>
     </form>
