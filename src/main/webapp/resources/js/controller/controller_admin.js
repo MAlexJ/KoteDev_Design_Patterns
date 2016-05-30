@@ -184,10 +184,10 @@ myAdmin.controller('adminImageController', function ($scope, $http) {
                         .success(function (data) {
                             $scope.imagesDel = data;
                             $scope.imagesPrev = data;
-                        })
-                        .error(function (data, status) {
-                            console.log("код ответа: " + status);
-                        });
+                        })                        ;
+                })
+                .error(function () {
+                    Materialize.toast('The image is not delete in the database!!!', 3500, '')
                 });
         }
         else {
@@ -260,5 +260,8 @@ myAdmin.controller('adminCreatePatternController', function ($scope, $http) {
 myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
 });
 myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
+    $scope.patternsTypeDelete = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
+    
+
 });
 

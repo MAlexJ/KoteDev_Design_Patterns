@@ -3,7 +3,7 @@ package com.malexj.controller.base;
 
 public abstract class AbstractController {
 
-    public boolean validateParam(String... srt) {
+    protected boolean validateParam(String... srt) {
         for (String item : srt) {
             if (item.equals("")) {
                 return false;

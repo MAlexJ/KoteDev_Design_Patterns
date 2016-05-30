@@ -24,7 +24,7 @@ public class PatternEntity extends BaseEntity {
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "id_image", unique = true, nullable = false)
+    @JoinColumn(name = "id_image", unique = true)
     private ImageEntity image;
 
     @OneToMany(mappedBy = "pattern")

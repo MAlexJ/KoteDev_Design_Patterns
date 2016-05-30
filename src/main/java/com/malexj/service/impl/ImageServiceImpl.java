@@ -1,5 +1,6 @@
 package com.malexj.service.impl;
 
+import com.malexj.exception.ImageNotAvailableException;
 import com.malexj.model.dto.ImageAllDTO;
 import com.malexj.model.dto.ImageIdAndNameDTO;
 import com.malexj.model.entity.ImageEntity;
@@ -7,6 +8,7 @@ import com.malexj.repository.ImageRepository;
 import com.malexj.service.ImageService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -62,8 +64,12 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public void delete(Long id) {
-        repository.delete(id);
+    public void delete(Long id) throws ImageNotAvailableException {
+        try {
+            repository.delete(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new ImageNotAvailableException();
+        }
     }
 
     @Override

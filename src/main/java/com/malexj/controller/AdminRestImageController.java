@@ -1,11 +1,13 @@
 package com.malexj.controller;
 
+import com.malexj.exception.ImageNotAvailableException;
 import com.malexj.model.dto.ImageAllDTO;
 import com.malexj.model.dto.ImageIdAndNameDTO;
 import com.malexj.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -31,7 +33,7 @@ public class AdminRestImageController {
     @ResponseBody
     public ImageAllDTO admin_image_view(@PathVariable Long id) {
         if (id > 0) {
-           return imageService.findOneDTO(id);
+            return imageService.findOneDTO(id);
         }
         return null;
     }
@@ -51,10 +53,16 @@ public class AdminRestImageController {
 
     //DELETE
     @RequestMapping(path = "/deleteImage/{id}", method = RequestMethod.DELETE)
-    public void admin_image_delete(@PathVariable Long id) {
+    public ResponseEntity<?> admin_image_delete(@PathVariable Long id) {
         if (id > 0) {
-            imageService.delete(id);
+            try {
+                imageService.delete(id);
+            } catch (ImageNotAvailableException e) {
+                return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
+            }
+            return new ResponseEntity<String>(HttpStatus.OK);
         }
+        return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
     }
 
 }

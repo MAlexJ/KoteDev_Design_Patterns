@@ -1,5 +1,6 @@
 package com.malexj.service;
 
+import com.malexj.exception.ImageNotAvailableException;
 import com.malexj.model.dto.ImageAllDTO;
 import com.malexj.model.dto.ImageIdAndNameDTO;
 import com.malexj.model.entity.ImageEntity;
@@ -22,7 +23,7 @@ public interface ImageService {
 
     ImageEntity update(ImageEntity entity);
 
-    void delete(Long id);
+    void delete(Long id) throws ImageNotAvailableException;
 
     ImageEntity findOne(Long id);
 
