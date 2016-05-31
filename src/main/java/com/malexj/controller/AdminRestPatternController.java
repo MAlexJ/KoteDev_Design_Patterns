@@ -1,8 +1,7 @@
 package com.malexj.controller;
 
 import com.malexj.controller.base.AbstractController;
-import com.malexj.model.dto.ImageIdAndNameDTO;
-import com.malexj.model.dto.PatternAllDTO;
+import com.malexj.model.dto.*;
 import com.malexj.model.entity.ImageEntity;
 import com.malexj.model.enums.PatternTag;
 import com.malexj.service.ImageService;
@@ -55,7 +54,28 @@ public class AdminRestPatternController extends AbstractController {
         }
     }
 
+    //GET list Patter where tag -> CREATIONAL, STRUCTURAL, BEHAVIORAL
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/getPatterns/{tag}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PatternIdAndTitleDTO> admin_patterns_get(@PathVariable PatternTag tag) {
+        List<PatternIdAndTitleDTO> patterns = null;
+        if (validateNotNull(tag)) {
+            patterns = patternService.findAllDTO(tag);
+        }
+        return patterns;
+    }
+
     //DELETE
-    // /deletePattern
+    @RequestMapping(path = "/deletePattern/{id}", method = RequestMethod.DELETE)
+    public void admin_page_delete(@PathVariable Long id) {
+        if (id > 0) {
+            ImageEntity image = patternService.findOne(id).getImage();
+            image.setAvailable(true);
+            imageService.update(image);
+            patternService.delete(id);
+        }
+    }
+
 
 }

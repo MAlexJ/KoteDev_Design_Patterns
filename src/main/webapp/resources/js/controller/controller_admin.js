@@ -184,7 +184,7 @@ myAdmin.controller('adminImageController', function ($scope, $http) {
                         .success(function (data) {
                             $scope.imagesDel = data;
                             $scope.imagesPrev = data;
-                        })                        ;
+                        });
                 })
                 .error(function () {
                     Materialize.toast('The image is not delete in the database!!!', 3500, '')
@@ -258,10 +258,71 @@ myAdmin.controller('adminCreatePatternController', function ($scope, $http) {
 
 });
 myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
-});
-myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
-    $scope.patternsTypeDelete = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
+    $scope.patternsTagUpdate = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
+
+    $scope.selectUpdatePattern = function (patternUpdate) {
+        if (!angular.isUndefined(patternUpdate)) {
+            //Get list patterns where Tag
+            $http.get('/admin/getPatterns/' + patternUpdate.tag)
+                .success(function (data) {
+                    $scope.patternsTitleUpdate = data;
+                    Materialize.toast('Get list pattern where type: ' + patternUpdate.tag, 3000, 'rounded');
+                })
+                .error(function (data, status) {
+                    console.log("код ответа: " + status);
+                });
+        } else {
+            Materialize.toast('Please select type!!!', 3000, '')
+        }
+    };
     
+});
+
+myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
+    $scope.patternsTagDelete = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
+
+    $scope.selectDeletePattern = function (patternDelete) {
+        if (!angular.isUndefined(patternDelete)) {
+            //Get list patterns where Tag
+            $http.get('/admin/getPatterns/' + patternDelete.tag)
+                .success(function (data) {
+                    $scope.patternsTitleDelete = data;
+                    Materialize.toast('Get list pattern where type: ' + patternDelete.tag, 3000, 'rounded');
+                })
+                .error(function (data, status) {
+                    console.log("код ответа: " + status);
+                });
+        } else {
+            Materialize.toast('Please select type!!!', 3000, '')
+        }
+    };
+
+    $scope.deletePattern = function (patternDeleteForm, patternTitleDl, patternDelete) {
+        if (patternDeleteForm.$valid
+            && !angular.isUndefined(patternTitleDl)) {
+            $http.delete('/admin/deletePattern/' + patternTitleDl.id)
+                .success(function () {
+                    //Get list patterns where Tag
+                    $http.get('/admin/getPatterns/' + patternDelete.tag)
+                        .success(function (data) {
+                            $scope.patternsTitleDelete = data;
+                            Materialize.toast('Get list pattern where type: ' + patternDelete.tag, 3000, 'rounded');
+                        })
+                        .error(function (data, status) {
+                            console.log("код ответа: " + status);
+                        });
+
+                    Materialize.toast('Delete pattern ID:' + patternTitleDl.id, 3000, 'rounded');
+                })
+                .error(function (data, status) {
+                    console.log("код ответа: " + status);
+                });
+
+        } else {
+            Materialize.toast('Please select title!!!', 3000, '')
+        }
+    }
+
 
 });
 

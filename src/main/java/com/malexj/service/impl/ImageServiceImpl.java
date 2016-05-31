@@ -55,7 +55,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public ImageEntity save(ImageEntity entity) {
-        return repository.saveAndFlush(entity);
+        return repository.saveAndFlush(entity);     // TODO exception SqlExceptionHelper - ERROR: duplicate key value violates Http -> 500
     }
 
     @Override

@@ -1,1 +1,76 @@
-updatePattern.html
+<div class="row">
+    <div class="col s12">
+        <h5>Update pattern</h5>
+    </div>
+
+    <div class="col s4">
+        <label class="black-text">
+            <select class="browser-default select_type"
+                    ng-model="patternUpdate.tag"
+                    ng-options="patternTagUp for patternTagUp in patternsTagUpdate">
+                <option value="" disabled="">Select type</option>
+            </select>
+        </label>
+    </div>
+    <div class="col s4">
+        <button ng-click="selectUpdatePattern(patternUpdate)" class="btn">Select</button>
+    </div>
+    <div class="col s10"><p></p></div>
+
+
+    <div class="col s4">
+        <label class="black-text">
+            <select class="browser-default select_type"
+                    ng-model="patternTitleUp"
+                    ng-options="patternTitleUp.title for patternTitleUp in patternsTitleUpdate">
+                <option value="" disabled="">Select title</option>
+            </select>
+        </label>
+    </div>
+    <div class="col s4">
+        <button ng-click="" class="btn">Select</button>
+    </div>
+    <div class="col s10"><p></p></div>
+
+    <div ng-hide="true">
+        <div class="input-field col s4">
+            <input placeholder="Title" ng-model="" id="title_pattern" type="text" class="validate"/>
+            <label class="active" for="title_pattern">Title</label>
+        </div>
+        <div class="col s10"><p></p></div>
+
+        <div class="input-field col s4">
+            <input placeholder="Actual Image" ng-model="" id="image_pattern" type="text" class="validate"/>
+            <label class="active" for="image_pattern">Actual Image</label>
+        </div>
+        <div class="col s10"><p></p></div>
+        <div class="col s4">
+            <label class="black-text">
+                <select class="browser-default select_type"
+                        ng-model="patternTitleUp"
+                        ng-options="patternTitleUp.title for patternTitleUp in patternsTitleUpdate">
+                    <option value="" disabled="">Select image</option>
+                </select>
+            </label>
+        </div>
+        <div class="col s10"><p></p></div>
+        <div class="col s4">
+            <input type="checkbox" class="filled-in" id="filled-in-box"/>
+            <label for="filled-in-box">New Image</label>
+        </div>
+
+        <div class="input-field col s12 black-text">
+            <div class="input-field">
+                <textarea ng-model="" id="textarea1" class="materialize-textarea" required=""></textarea>
+                <label for="textarea1" class="black-text">Text</label>
+            </div>
+        </div>
+
+        <div class="col s12 m12 l12">
+            <div class="input-field">
+                <button ng-click="" class="btn">Update</button>
+            </div>
+        </div>
+    </div>
+
+</div>

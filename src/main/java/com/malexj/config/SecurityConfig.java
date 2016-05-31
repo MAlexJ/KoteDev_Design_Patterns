@@ -49,14 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(success)
                 .failureHandler(failure)
                 .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .and()
                 .authorizeRequests()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/**").permitAll();
-
-//        .and()   http://stackoverflow.com/questions/28471770/auth-spring-security-java-configuration
-//                .logout()
-//                .logoutSuccessUrl("/")
-//                .deleteCookies("JSESSIONID")
-//                .invalidateHttpSession(true);
     }
 }

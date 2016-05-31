@@ -2,32 +2,33 @@
     <div class="col s12">
         <h5>Delete pattern</h5>
     </div>
+
+    <div class="col s4">
+        <label class="black-text">
+            <select class="browser-default select_type"
+                    ng-model="patternDelete.tag"
+                    ng-options="patternTagDl for patternTagDl in patternsTagDelete">
+                <option value="" disabled="">Select type</option>
+            </select>
+        </label>
+    </div>
+    <div class="col s4">
+        <button ng-click="selectDeletePattern(patternDelete)" class="btn">Select</button>
+    </div>
+    <div class="col s10"><p></p></div>
     <form name="patternDeleteForm">
         <div class="col s4">
             <label class="black-text">
                 <select class="browser-default select_type" required=""
-                        ng-model="patternDelete.type"
-                        ng-options="patternTypeDl for patternTypeDl in patternsTypeDelete">
-                    <option value="" disabled="">Select type</option>
-                </select>
-            </label>
-        </div>
-        <div class="col s4">
-            <button ng-click="selectDeletePattern(patternDelete)" class="btn">Select</button>
-        </div>
-        <div class="col s10"><p></p></div>
-        <div class="col s4">
-            <label class="black-text">
-                <select class="browser-default select_type" required=""
-                        ng-model="pageDelete.type"
-                        ng-options="pageTypeDl for pageTypeDl in pagesTypeDelete">
+                        ng-model="patternTitleDl"
+                        ng-options="patternTitleDl.title for patternTitleDl in patternsTitleDelete">
                     <option value="" disabled="">Select title</option>
                 </select>
             </label>
         </div>
         <div class="col s12 m12 l12">
             <div class="input-field">
-                <button ng-click="" class="btn">DELETE</button>
+                <button ng-click="deletePattern(patternDeleteForm, patternTitleDl, patternDelete)" class="btn">DELETE</button>
             </div>
         </div>
     </form>

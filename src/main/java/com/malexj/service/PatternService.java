@@ -1,7 +1,9 @@
 package com.malexj.service;
 
 import com.malexj.model.dto.PatternAllDTO;
+import com.malexj.model.dto.PatternIdAndTitleDTO;
 import com.malexj.model.entity.PatternEntity;
+import com.malexj.model.enums.PatternTag;
 
 import java.util.List;
 
@@ -9,6 +11,8 @@ public interface PatternService {
 
     //DTO
     void saveDTO(PatternAllDTO pattern);
+
+    List<PatternIdAndTitleDTO> findAllDTO(PatternTag tag);
 
     // Pattern
     PatternEntity save(PatternEntity entity);

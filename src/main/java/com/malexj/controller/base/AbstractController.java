@@ -11,4 +11,13 @@ public abstract class AbstractController {
         }
         return true;
     }
+
+    protected boolean validateNotNull(Object... ob) {
+        for (Object item : ob) {
+            if (item==null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
