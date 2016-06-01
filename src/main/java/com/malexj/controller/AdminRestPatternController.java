@@ -90,6 +90,8 @@ public class AdminRestPatternController extends AbstractController {
     public ResponseEntity<?> admin_patterns_update(@RequestBody PatternAllVO pattern) {
         if (validateNotNull(pattern)) {
             System.err.println(pattern);
+
+
             return new ResponseEntity<String>(HttpStatus.OK);
         }
         return new ResponseEntity<String>(HttpStatus.FORBIDDEN);

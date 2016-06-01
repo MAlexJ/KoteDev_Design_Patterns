@@ -115,7 +115,16 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
             if (!angular.isUndefined(reg.name)
                 && !angular.isUndefined(reg.email)
                 && !angular.isUndefined(reg.password)) {
-                if (reg.email.contains('@')
+                var EMAIL_REG = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+
+                if (!EMAIL_REG.test(reg.email)){
+                    $scope.regValidUEmail = true;
+                    $timeout(function () {
+                        $scope.regValidUEmail = false;
+                    }, 1500);
+                }
+
+                if (EMAIL_REG.test(reg.email)
                     && reg.name != ''
                     && reg.password != '') {
                     var account = {
