@@ -1,13 +1,13 @@
 package com.malexj.service.impl;
 
-import com.malexj.model.dto.ImageAllDTO;
 import com.malexj.model.dto.PatternAllDTO;
 import com.malexj.model.dto.PatternIdAndTitleDTO;
-import com.malexj.model.entity.ImageEntity;
 import com.malexj.model.entity.PatternEntity;
 import com.malexj.model.enums.PatternTag;
+import com.malexj.model.vo.PatternAllVO;
 import com.malexj.repository.PatternRepository;
 import com.malexj.service.PatternService;
+import com.malexj.util.ConvertPatternDTOinVO;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +24,9 @@ public class PatternServiceImpl implements PatternService {
     @Autowired
     private Mapper beanMapper;
 
+    @Autowired
+    private ConvertPatternDTOinVO convert;
+
     @Override
     public void saveDTO(PatternAllDTO pattern) {
         save(beanMapper.map(pattern, PatternEntity.class));
@@ -37,6 +40,11 @@ public class PatternServiceImpl implements PatternService {
             dtoList.add(beanMapper.map(item, PatternIdAndTitleDTO.class));
         }
         return dtoList;
+    }
+
+    @Override
+    public PatternAllVO findOneVO(Long id) {
+        return convert.convertDTOinVO(findOne(id));
     }
 
     @Override

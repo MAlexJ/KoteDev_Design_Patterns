@@ -4,6 +4,7 @@ import com.malexj.controller.base.AbstractController;
 import com.malexj.model.dto.*;
 import com.malexj.model.entity.ImageEntity;
 import com.malexj.model.enums.PatternTag;
+import com.malexj.model.vo.PatternAllVO;
 import com.malexj.service.ImageService;
 import com.malexj.service.PatternService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AdminRestPatternController extends AbstractController {
     @Autowired
     private PatternService patternService;
 
-    //GET LIST
+    //GET LIST IMAGE
     @RequestMapping(path = "/imagesPattern", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -33,7 +34,6 @@ public class AdminRestPatternController extends AbstractController {
     }
 
     // CREATE
-    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/createPattern", method = RequestMethod.POST)
     public ResponseEntity<?> admin_pattern_create(@RequestParam("id_image") Long id_image,
                                                   @RequestParam("tag") PatternTag tag,
@@ -54,7 +54,7 @@ public class AdminRestPatternController extends AbstractController {
         }
     }
 
-    //GET list Patter where tag -> CREATIONAL, STRUCTURAL, BEHAVIORAL
+    //GET LIST PATTERNS BY TAG -> CREATIONAL, STRUCTURAL, BEHAVIORAL
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/getPatterns/{tag}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,15 +66,33 @@ public class AdminRestPatternController extends AbstractController {
         return patterns;
     }
 
-    //DELETE
+    //DELETE BY ID
     @RequestMapping(path = "/deletePattern/{id}", method = RequestMethod.DELETE)
-    public void admin_page_delete(@PathVariable Long id) {
+    public void admin_pattern_delete(@PathVariable Long id) {
         if (id > 0) {
             ImageEntity image = patternService.findOne(id).getImage();
             image.setAvailable(true);
             imageService.update(image);
             patternService.delete(id);
         }
+    }
+
+    //GET Patter BY ID
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/getPattern/{id}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public PatternAllVO admin_patterns_get(@PathVariable Long id) {
+        return patternService.findOneVO(id);
+    }
+
+    //UPDATE PATTERN
+    @RequestMapping(path = "/updatePattern", method = RequestMethod.POST)
+    public ResponseEntity<?> admin_patterns_update(@RequestBody PatternAllVO pattern) {
+        if (validateNotNull(pattern)) {
+            System.err.println(pattern);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }
+        return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
     }
 
 

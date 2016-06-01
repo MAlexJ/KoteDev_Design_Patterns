@@ -172,7 +172,7 @@ myAdmin.controller('adminImageController', function ($scope, $http) {
         }
     };
 
-    //DELETE
+    //DELETE IMAGE BY ID
     $scope.deleteImg = function (selectOptDel) {
         if (selectOptDel > 0) {
             $http.delete('/admin/deleteImage/' + selectOptDel)
@@ -259,7 +259,9 @@ myAdmin.controller('adminCreatePatternController', function ($scope, $http) {
 });
 myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
     $scope.patternsTagUpdate = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
+    $scope.patternsTagUpdateNew = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
 
+    //GET LIST PATTERN BY ID
     $scope.selectUpdatePattern = function (patternUpdate) {
         if (!angular.isUndefined(patternUpdate)) {
             //Get list patterns where Tag
@@ -275,12 +277,173 @@ myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
             Materialize.toast('Please select type!!!', 3000, '')
         }
     };
-    
+
+    //HIDE page content update
+    $scope.hidePattern = true;
+
+    //GET PATTERN BY ID
+    $scope.getPattern = function (patternTitleUp) {
+        if (!angular.isUndefined(patternTitleUp)) {
+            $http.get('/admin/getPattern/' + patternTitleUp.id)
+                .success(function (data) {
+                    $scope.patternUpdateObject = data;
+                    $scope.hidePattern = false;
+
+                    //Get list available images
+                    $http.get('/admin/imagesPattern')
+                        .success(function (data) {
+                            $scope.imagesAvailableNew = data;
+                        })
+                        .error(function (data, status) {
+                            console.log("код ответа: " + status);
+                        });
+
+                })
+                .error(function (data, status) {
+                    console.log("код ответа: " + status);
+                });
+        }
+    };
+
+    //PARAM DEFAULT
+    $scope.newRadioTag = false;
+    $scope.newRadioImage = false;
+
+    //UPDATE PATTERN
+    $scope.updatePattern = function (patternUpdateObject,
+                                     newRadioTag,
+                                     newUpdatePatternTag,
+                                     newRadioImage,
+                                     newUpdatePatternImage) {
+        //NEW TAG
+        if (!angular.isUndefined(patternUpdateObject)
+            && newRadioTag == true
+            && newRadioImage == false
+            && !angular.isUndefined(newUpdatePatternTag)) {
+            var _updatePatternNewTAg = {
+                id: patternUpdateObject.id,
+                tag: newUpdatePatternTag,
+                title: patternUpdateObject.title,
+                text: patternUpdateObject.text,
+                image: patternUpdateObject.image
+            };
+            $http.post('/admin/updatePattern', _updatePatternNewTAg)
+                .success(function () {
+                    //HIDE page content update
+                    $scope.hidePattern = true;
+                    $scope.patternsTitleUpdate = '';
+                    $scope.newRadioTag = false;
+                    $scope.newRadioImage = false;
+                    $scope.newUpdatePatternTag = '';
+                })
+                .error(function (status) {
+                    console.log("код ответа: " + status);
+                });
+        }
+        if (!angular.isUndefined(patternUpdateObject)
+            && newRadioTag == true
+            && newRadioImage == false
+            && angular.isUndefined(newUpdatePatternTag)) {
+            Materialize.toast('Please select type pattern!!!', 3000, '')
+        }
+
+        //NEW IMAGE
+        if (!angular.isUndefined(patternUpdateObject)
+            && newRadioImage == true
+            && newRadioTag == false
+            && !angular.isUndefined(newUpdatePatternImage)) {
+            var _updatePatternNewImage = {
+                id: patternUpdateObject.id,
+                tag: patternUpdateObject.tag,
+                title: patternUpdateObject.title,
+                text: patternUpdateObject.text,
+                image: newUpdatePatternImage.name
+            };
+            $http.post('/admin/updatePattern', _updatePatternNewImage)
+                .success(function () {
+                    //HIDE page content update
+                    $scope.hidePattern = true;
+                    $scope.patternsTitleUpdate = '';
+                    $scope.newRadioTag = false;
+                    $scope.newRadioImage = false;
+                    $scope.newUpdatePatternTag = '';
+                })
+                .error(function (status) {
+                    console.log("код ответа: " + status);
+                });
+        }
+        if (!angular.isUndefined(patternUpdateObject)
+            && newRadioImage == true
+            && newRadioTag == false
+            && angular.isUndefined(newUpdatePatternImage)) {
+            Materialize.toast('Please select image pattern!!!', 3000, '')
+        }
+
+        //NEW IMAGE AND TAG
+        if (!angular.isUndefined(patternUpdateObject)
+            && newRadioImage == true
+            && !angular.isUndefined(newUpdatePatternTag)
+            && newRadioTag == true
+            && !angular.isUndefined(newUpdatePatternImage)) {
+            var _updatePatternNewTagAndImage = {
+                id: patternUpdateObject.id,
+                tag: newUpdatePatternTag,
+                title: patternUpdateObject.title,
+                text: patternUpdateObject.text,
+                image: newUpdatePatternImage.name
+            };
+            $http.post('/admin/updatePattern', _updatePatternNewTagAndImage)
+                .success(function () {
+                    //HIDE page content update
+                    $scope.hidePattern = true;
+                    $scope.patternsTitleUpdate = '';
+                    $scope.newRadioTag = false;
+                    $scope.newRadioImage = false;
+                    $scope.newUpdatePatternTag = '';
+                })
+                .error(function (status) {
+                    console.log("код ответа: " + status);
+                });
+        }
+        if (!angular.isUndefined(patternUpdateObject)
+            && newRadioImage == true
+            && newRadioTag == true) {
+            if (angular.isUndefined(newUpdatePatternTag)) {
+                Materialize.toast('Please select type pattern!!!', 3000, '')
+            }
+            if (angular.isUndefined(newUpdatePatternImage)) {
+                Materialize.toast('Please select image pattern!!!', 3000, '')
+            }
+        }
+
+        //DEFAULT
+        if (!angular.isUndefined(patternUpdateObject)
+            && newRadioTag == false
+            && newRadioImage == false) {
+            var _updatePattern = {
+                id: patternUpdateObject.id,
+                tag: patternUpdateObject.tag,
+                title: patternUpdateObject.title,
+                text: patternUpdateObject.text,
+                image: patternUpdateObject.image
+            };
+            $http.post('/admin/updatePattern', _updatePattern)
+                .success(function () {
+                    //HIDE page content update
+                    $scope.hidePattern = true;
+                    $scope.patternsTitleUpdate = '';
+                })
+                .error(function (status) {
+                    console.log("код ответа: " + status);
+                });
+        }
+    }
 });
 
 myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
     $scope.patternsTagDelete = ['BEHAVIORAL', 'CREATIONAL', 'STRUCTURAL'];
 
+    //GET LIST PATTERN BY TAG
     $scope.selectDeletePattern = function (patternDelete) {
         if (!angular.isUndefined(patternDelete)) {
             //Get list patterns where Tag
@@ -297,6 +460,7 @@ myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
         }
     };
 
+    //DELETE PATTERN -> id
     $scope.deletePattern = function (patternDeleteForm, patternTitleDl, patternDelete) {
         if (patternDeleteForm.$valid
             && !angular.isUndefined(patternTitleDl)) {
@@ -322,7 +486,5 @@ myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
             Materialize.toast('Please select title!!!', 3000, '')
         }
     }
-
-
 });
 

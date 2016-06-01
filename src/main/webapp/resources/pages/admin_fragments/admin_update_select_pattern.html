@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="admin_update_select_pattern">
+
+    <div class="col s12">
+        <h5>Update pattern</h5>
+    </div>
+
+    <div class="col s9 l4 m4">
+        <label class="black-text">
+            <select class="browser-default select_type"
+                    ng-model="patternUpdate.tag"
+                    ng-options="patternTagUp for patternTagUp in patternsTagUpdate">
+                <option value="" disabled="">Select type</option>
+            </select>
+        </label>
+    </div>
+    <div class="col s3 l4 m4">
+        <button ng-click="selectUpdatePattern(patternUpdate)" class="btn">Select</button>
+    </div>
+    <div class="col s10"><p></p></div>
+
+
+    <div class="col col s9 l4 m4">
+        <label class="black-text">
+            <select class="browser-default select_type"
+                    ng-model="patternTitleUp"
+                    ng-options="patternTitleUp.title for patternTitleUp in patternsTitleUpdate">
+                <option value="" disabled="">Select title</option>
+            </select>
+        </label>
+    </div>
+    <div class="col s3 l4 m4">
+        <button ng-click="getPattern(patternTitleUp)" class="btn">Select</button>
+    </div>
+    <div class="col s10"><p></p></div>
+
+
+</div>
+</html>

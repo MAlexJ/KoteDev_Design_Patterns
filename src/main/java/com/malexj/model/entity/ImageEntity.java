@@ -77,7 +77,7 @@ public class ImageEntity extends BaseEntity {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + Arrays.hashCode(img);
-        result = 31 * result + (pattern != null ? pattern.hashCode() : 0);
+        result = 31 * result + (pattern != null ? 31 : 0);
         result = 31 * result + (isAvailable ? 1 : 0);
         return result;
     }

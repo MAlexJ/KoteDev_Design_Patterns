@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="admin_update_tag">
+
+    <div class="input-field col s12 l4 m4">
+        <input placeholder="Type" ng-model="patternUpdateObject.tag" id="tag_pattern" type="text"
+              disabled="" class="validate"/>
+        <label class="active" for="tag_pattern">Actual Type</label>
+    </div>
+    <div class="col s10"><p></p></div>
+
+
+    <div class="card-panel blue-grey darken-1 col s12 l4 m4">
+        <div class="card-content white-text">
+            <h6><b>New Type</b></h6>
+            <label class="black-text">
+                <select class="browser-default select_type"
+                        ng-model="newUpdatePatternTag"
+                        ng-options="patternTagUpdateNew for patternTagUpdateNew in patternsTagUpdateNew">
+                    <option value="" disabled="">Select type</option>
+                </select>
+            </label>
+        </div>
+        <div class="card-content">
+            <p>
+                <input type="checkbox" ng-model="newRadioTag" class="filled-in" id="filledType-in-box"/>
+                <label for="filledType-in-box">New Type</label>
+            </p>
+        </div>
+    </div>
+    <div class="col s10"><p></p></div>
+
+</div>
+</html>

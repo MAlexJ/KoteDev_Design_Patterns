@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.malexj.model.entity.base.BaseEntity;
 import com.malexj.model.enums.PatternTag;
+import org.dozer.Mapping;
 
 import javax.persistence.*;
 import java.util.List;
@@ -93,8 +94,8 @@ public class PatternEntity extends BaseEntity {
         int result = title != null ? title.hashCode() : 0;
         result = 31 * result + (tag != null ? tag.hashCode() : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (comments != null ? comments.hashCode() : 0);
+        result = 31 * result + (image != null ? 31 : 0);
+        result = 31 * result + (comments != null ? 31 : 0);
         return result;
     }
 }

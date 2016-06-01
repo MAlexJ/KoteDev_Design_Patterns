@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="admin_update_text">
+    <div class="input-field col s12 black-text">
+        <div class="input-field">
+                <textarea ng-model="patternUpdateObject.text" id="textarea1" class="materialize-textarea"
+                          required=""></textarea>
+            <label class="active" for="textarea1">Text</label>
+        </div>
+    </div>
+
+    <div class="col s12 m12 l12">
+        <div class="input-field">
+            <button ng-click="updatePattern(patternUpdateObject, newRadioTag, newUpdatePatternTag, newRadioImage , newUpdatePatternImage)"
+                    class="btn">Update
+            </button>
+        </div>
+    </div>
+</div>
+
+</html>
