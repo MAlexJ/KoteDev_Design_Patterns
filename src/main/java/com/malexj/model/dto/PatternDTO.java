@@ -1,9 +1,10 @@
 package com.malexj.model.dto;
 
+import com.malexj.model.dto.base.BaseDTO;
 import com.malexj.model.entity.ImageEntity;
 import com.malexj.model.enums.PatternTag;
 
-public class PatternAllDTO {
+public class PatternDTO extends BaseDTO {
 
     private String title;
 
@@ -13,7 +14,7 @@ public class PatternAllDTO {
 
     private ImageEntity image;
 
-    public PatternAllDTO() {
+    public PatternDTO() {
     }
 
     public String getTitle() {
@@ -53,7 +54,7 @@ public class PatternAllDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PatternAllDTO that = (PatternAllDTO) o;
+        PatternDTO that = (PatternDTO) o;
 
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (tag != that.tag) return false;
@@ -73,7 +74,7 @@ public class PatternAllDTO {
 
     @Override
     public String toString() {
-        return "PatternAllDTO{" +
+        return "PatternDTO{" +
                 "title='" + title + '\'' +
                 ", tag=" + tag +
                 ", text='" + text + '\'' +

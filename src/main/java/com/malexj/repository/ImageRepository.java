@@ -9,4 +9,8 @@ import java.util.List;
 public interface ImageRepository extends JpaRepository<ImageEntity, Long>{
 
     List<ImageEntity> findByIsAvailable(boolean available);
+
+    ImageEntity findByName(String name);
+
+
 }

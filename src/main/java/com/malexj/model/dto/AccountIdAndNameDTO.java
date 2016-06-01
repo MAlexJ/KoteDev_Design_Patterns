@@ -1,6 +1,8 @@
 package com.malexj.model.dto;
 
-public class AccountIdAndNameDTO {
+import com.malexj.model.dto.base.BaseDTO;
+
+public class AccountIdAndNameDTO extends BaseDTO {
 
     private Long id;
 

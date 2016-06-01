@@ -52,9 +52,10 @@ myAdmin.controller('adminCreatePageController', function ($scope, $http) {
                     $http.get('/admin/pageGetType').success(function (data) {
                         $scope.pagesTypeCreate = data;
                     });
+                    Materialize.toast('The page is added to the database', 3000, 'rounded');
                 })
-                .error(function (status) {
-                    console.log("код ответа: " + status);
+                .error(function () {
+                    Materialize.toast('The page is not added!!!', 3000, '')
                 });
         }
 
@@ -96,9 +97,10 @@ myAdmin.controller('adminUpdatePageController', function ($scope, $http) {
                         $scope.pagesTypeUpdate = data;
                     });
                     $scope.pagesTextUpdate.text = '';
+                    Materialize.toast('The page is update to the database', 3000, 'rounded');
                 })
-                .error(function (status) {
-                    console.log("код ответа: " + status);
+                .error(function () {
+                    Materialize.toast('The page is not updated!!!', 3000, '')
                 });
         }
     }
@@ -120,9 +122,10 @@ myAdmin.controller('adminDeletePageController', function ($scope, $http) {
                     $http.get('/admin/deletePages').success(function (data) {
                         $scope.pagesTypeDelete = data;
                     });
+                    Materialize.toast('The page is delete to the database', 3000, 'rounded');
                 })
-                .error(function (status) {
-                    console.log("код ответа: " + status);
+                .error(function () {
+                    Materialize.toast('The page is not deleted!!!', 3000, '')
                 });
         }
     }
@@ -335,6 +338,7 @@ myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
                     $scope.newRadioTag = false;
                     $scope.newRadioImage = false;
                     $scope.newUpdatePatternTag = '';
+                    Materialize.toast('Pattern update in DataBase ID:' + patternUpdateObject.id, 3000, 'rounded');
                 })
                 .error(function (status) {
                     console.log("код ответа: " + status);
@@ -367,6 +371,7 @@ myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
                     $scope.newRadioTag = false;
                     $scope.newRadioImage = false;
                     $scope.newUpdatePatternTag = '';
+                    Materialize.toast('Pattern update in DataBase ID:' + patternUpdateObject.id, 3000, 'rounded');
                 })
                 .error(function (status) {
                     console.log("код ответа: " + status);
@@ -400,6 +405,7 @@ myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
                     $scope.newRadioTag = false;
                     $scope.newRadioImage = false;
                     $scope.newUpdatePatternTag = '';
+                    Materialize.toast('Pattern update in DataBase ID:' + patternUpdateObject.id, 3000, 'rounded');
                 })
                 .error(function (status) {
                     console.log("код ответа: " + status);
@@ -432,6 +438,7 @@ myAdmin.controller('adminUpdatePatternController', function ($scope, $http) {
                     //HIDE page content update
                     $scope.hidePattern = true;
                     $scope.patternsTitleUpdate = '';
+                    Materialize.toast('Pattern update in DataBase ID:' + patternUpdateObject.id, 3000, 'rounded');
                 })
                 .error(function (status) {
                     console.log("код ответа: " + status);
@@ -470,7 +477,6 @@ myAdmin.controller('adminDeletePatternController', function ($scope, $http) {
                     $http.get('/admin/getPatterns/' + patternDelete.tag)
                         .success(function (data) {
                             $scope.patternsTitleDelete = data;
-                            Materialize.toast('Get list pattern where type: ' + patternDelete.tag, 3000, 'rounded');
                         })
                         .error(function (data, status) {
                             console.log("код ответа: " + status);

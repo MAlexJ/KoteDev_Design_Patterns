@@ -3,6 +3,7 @@ package com.malexj.controller;
 import com.malexj.controller.base.AbstractController;
 import com.malexj.model.dto.*;
 import com.malexj.model.entity.ImageEntity;
+import com.malexj.model.entity.PatternEntity;
 import com.malexj.model.enums.PatternTag;
 import com.malexj.model.vo.PatternAllVO;
 import com.malexj.service.ImageService;
@@ -42,7 +43,7 @@ public class AdminRestPatternController extends AbstractController {
         if (id_image > 0 && validateParam(title, text)) {
             ImageEntity image = imageService.findOne(id_image);
             image.setAvailable(false);
-            PatternAllDTO pattern = new PatternAllDTO();
+            PatternDTO pattern = new PatternDTO();
             pattern.setTag(tag);
             pattern.setTitle(title);
             pattern.setText(text);
@@ -89,13 +90,21 @@ public class AdminRestPatternController extends AbstractController {
     @RequestMapping(path = "/updatePattern", method = RequestMethod.POST)
     public ResponseEntity<?> admin_patterns_update(@RequestBody PatternAllVO pattern) {
         if (validateNotNull(pattern)) {
-            System.err.println(pattern);
-
-
+            PatternEntity patternEntity = patternService.findOne(pattern.getId());
+            ImageEntity image = patternEntity.getImage();
+            if (!image.getName().equals(pattern.getImage())) {
+                ImageEntity newImage = imageService.findByName(pattern.getImage());
+                newImage.setAvailable(false);
+                patternEntity.setImage(newImage);
+                image.setAvailable(true);
+                imageService.update(image);
+            }
+            patternEntity.setTag(pattern.getTag());
+            patternEntity.setText(pattern.getText());
+            patternEntity.setTitle(pattern.getTitle());
+            patternService.update(patternEntity);
             return new ResponseEntity<String>(HttpStatus.OK);
         }
         return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
     }
-
-
 }

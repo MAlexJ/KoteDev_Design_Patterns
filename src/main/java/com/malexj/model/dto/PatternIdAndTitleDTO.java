@@ -1,7 +1,9 @@
 package com.malexj.model.dto;
 
 
-public class PatternIdAndTitleDTO {
+import com.malexj.model.dto.base.BaseDTO;
+
+public class PatternIdAndTitleDTO extends BaseDTO {
     private Long id;
     private String title;
 

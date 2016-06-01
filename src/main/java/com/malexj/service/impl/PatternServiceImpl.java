@@ -1,6 +1,6 @@
 package com.malexj.service.impl;
 
-import com.malexj.model.dto.PatternAllDTO;
+import com.malexj.model.dto.PatternDTO;
 import com.malexj.model.dto.PatternIdAndTitleDTO;
 import com.malexj.model.entity.PatternEntity;
 import com.malexj.model.enums.PatternTag;
@@ -28,7 +28,7 @@ public class PatternServiceImpl implements PatternService {
     private ConvertPatternDTOinVO convert;
 
     @Override
-    public void saveDTO(PatternAllDTO pattern) {
+    public void saveDTO(PatternDTO pattern) {
         save(beanMapper.map(pattern, PatternEntity.class));
     }
 

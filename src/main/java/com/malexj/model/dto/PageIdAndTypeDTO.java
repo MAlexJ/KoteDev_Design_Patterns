@@ -1,8 +1,9 @@
 package com.malexj.model.dto;
 
+import com.malexj.model.dto.base.BaseDTO;
 import com.malexj.model.enums.PageType;
 
-public class PageIdAndTypeDTO {
+public class PageIdAndTypeDTO extends BaseDTO {
     private Long id;
     private PageType type;
 

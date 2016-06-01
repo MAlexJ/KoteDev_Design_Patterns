@@ -1,9 +1,11 @@
 package com.malexj.model.dto;
 
+import com.malexj.model.dto.base.BaseDTO;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class AccountEmailDTO {
+public class AccountEmailDTO extends BaseDTO {
 
     @NotNull
     @Size(min = 5, max = 30)

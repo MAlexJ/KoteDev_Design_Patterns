@@ -1,12 +1,13 @@
 package com.malexj.model.dto;
 
+import com.malexj.model.dto.base.BaseDTO;
 import com.malexj.model.enums.Roles;
 import com.malexj.model.enums.UserStatus;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class AccountAllDTO {
+public class AccountAllDTO extends BaseDTO {
 
     @NotNull
     @Size(min=1, max=30)

@@ -1,6 +1,8 @@
 package com.malexj.model.dto;
 
-public class ImageIdAndNameDTO {
+import com.malexj.model.dto.base.BaseDTO;
+
+public class ImageIdAndNameDTO extends BaseDTO {
     private Long id;
     private String name;
 

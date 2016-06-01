@@ -78,6 +78,11 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public ImageEntity findByName(String name) {
+        return repository.findByName(name);
+    }
+
+    @Override
     public List<ImageEntity> findAll() {
         return repository.findAll();
     }

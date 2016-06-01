@@ -1,8 +1,10 @@
 package com.malexj.model.dto;
 
+import com.malexj.model.dto.base.BaseDTO;
+
 import java.util.Arrays;
 
-public class ImageAllDTO {
+public class ImageAllDTO extends BaseDTO {
 
     private String name;
 
