@@ -1,5 +1,6 @@
 package com.malexj.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.malexj.model.entity.base.BaseEntity;
 import org.hibernate.annotations.Type;
 
@@ -19,6 +20,7 @@ public class ImageEntity extends BaseEntity {
     private byte[] img;
 
     @OneToOne(mappedBy = "image")
+    @JsonIgnore
     private PatternEntity pattern;
 
     @Column(name = "available", nullable = false)
@@ -63,14 +65,11 @@ public class ImageEntity extends BaseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ImageEntity that = (ImageEntity) o;
-
-        if (isAvailable != that.isAvailable) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (!Arrays.equals(img, that.img)) return false;
-        return pattern != null ? pattern.equals(that.pattern) : that.pattern == null;
-
+        return isAvailable == that.isAvailable
+                && (name != null ? name.equals(that.name) : that.name == null
+                && Arrays.equals(img, that.img)
+                && (pattern != null ? pattern.equals(that.pattern) : that.pattern == null));
     }
 
     @Override

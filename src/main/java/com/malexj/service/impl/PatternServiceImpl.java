@@ -1,5 +1,6 @@
 package com.malexj.service.impl;
 
+import com.malexj.model.dto.PatternAllDTO;
 import com.malexj.model.dto.PatternDTO;
 import com.malexj.model.dto.PatternIdAndTitleDTO;
 import com.malexj.model.entity.PatternEntity;
@@ -33,11 +34,21 @@ public class PatternServiceImpl implements PatternService {
     }
 
     @Override
-    public List<PatternIdAndTitleDTO> findAllDTO(PatternTag tag) {
+    public List<PatternIdAndTitleDTO> findDTO(PatternTag tag) {
         List<PatternIdAndTitleDTO> dtoList = new ArrayList<>();
         List<PatternEntity> patternList = repository.findAllByTag(tag);
         for(PatternEntity item: patternList){
             dtoList.add(beanMapper.map(item, PatternIdAndTitleDTO.class));
+        }
+        return dtoList;
+    }
+
+    @Override
+    public List<PatternAllDTO> findAllDTO(PatternTag tag) {
+        List<PatternAllDTO> dtoList = new ArrayList<>();
+        List<PatternEntity> patternList = repository.findAllByTag(tag);
+        for(PatternEntity item: patternList){
+            dtoList.add(convert.convertDTO(item));
         }
         return dtoList;
     }

@@ -62,7 +62,7 @@ public class AdminRestPatternController extends AbstractController {
     public List<PatternIdAndTitleDTO> admin_patterns_get(@PathVariable PatternTag tag) {
         List<PatternIdAndTitleDTO> patterns = null;
         if (validateNotNull(tag)) {
-            patterns = patternService.findAllDTO(tag);
+            patterns = patternService.findDTO(tag);
         }
         return patterns;
     }

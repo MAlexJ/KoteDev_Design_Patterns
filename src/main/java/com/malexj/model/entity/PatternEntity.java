@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.malexj.model.entity.base.BaseEntity;
 import com.malexj.model.enums.PatternTag;
-import org.dozer.Mapping;
 
 import javax.persistence.*;
 import java.util.List;
