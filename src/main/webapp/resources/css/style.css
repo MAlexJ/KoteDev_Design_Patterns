@@ -1368,7 +1368,7 @@ xsigin/signup popup
 .cd-tabs {
     position: relative;
     width: 100%;
-    max-width: 960px;
+    /*max-width: 960px;*/
     margin: 2em auto;
 }
 .cd-tabs:after {
