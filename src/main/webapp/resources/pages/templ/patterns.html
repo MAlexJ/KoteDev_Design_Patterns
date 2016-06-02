@@ -15,7 +15,7 @@
 
                         <img th:src="@{/resources/img/patern.png}" src="../img/patern.png" alt="Structure pattern"/>
 
-                        <div style="padding-bottom: 20px;padding-top: 20px">
+                        <div class="pattern_text">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quidem blanditiis delectus
                                 corporis, possimus officia sint sequi ex tenetur id impedit est pariatur iure animi non
                                 a
@@ -31,18 +31,18 @@
 
                         </div>
 
-                        <hr style="color: #ffffff"/>
-                        <div style="padding-top: 15px">
+                        <hr class="pattern_hr"/>
+                        <div class="pattern_comments">
                             <!-- Block Comment -->
-                            <div style="display: block;padding-bottom: 5px">
-                                <img th:src="@{/resources/img/coment.png}" style="width: 36px;display: inline"
+                            <div class="pattern_comment">
+                                <img class="pattern_comment_icon" th:src="@{/resources/img/coment.png}"
                                      src="../img/coment.png"/>
-                                <div style="display: inline-block; height: 36px">
+                                <div class="pattern_comment_data">
                                     <p><b>Alex</b></p>
-                                    <p style="font-size: 8pt">26.10.16</p>
+                                    <p class="pattern_comment_data_text">26.10.16</p>
                                 </div>
                             </div>
-                            <div style="padding-bottom: 20px">
+                            <div class="pattern_comment_block_text">
                                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi cupiditate et
                                     laudantium
                                     esse adipisci consequatur modi possimus accusantium vero atque
@@ -83,11 +83,11 @@
 
 
                             <!-- Commentary -->
-                            <div style="padding-top: 5px">
+                            <div class="pattern_comment_commentary">
                                 <form name="formCommentary">
                                     <p>Leave a comment:</p>
-                                    <textarea ng-model="textareaCommentary.text" type="text" style="width: 100%"
-                                              rows="6"/>
+                                    <textarea ng-model="textareaCommentary.text" type="text"
+                                              class="pattern_comment_commentary_text" rows="6"/>
                                     <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
                                        class="cd-btn-send">Post Comment</a>
                                     <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
@@ -133,42 +133,29 @@
             <ul id="mobile" class="cd-faq-group">
                 <li class="cd-faq-title"><h2>Structural patterns</h2></li>
                 <li>
-                    <a class="cd-faq-trigger" href="">How does syncing work?</a>
+                    <a class="cd-faq-trigger" href="">TITLE</a>
                     <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit quidem delectus rerum
-                            eligendi mollitia, repudiandae quae beatae. Et repellat quam atque corrupti iusto architecto
-                            impedit explicabo repudiandae qui similique aut iure ipsum quis inventore nulla error
-                            aliquid alias quia dolorem dolore, odio excepturi veniam odit veritatis. Quo iure magnam, et
-                            cum. Laudantium, eaque non? Tempore nihil corporis cumque dolor ipsum accusamus sapiente
-                            aliquid quis ea assumenda deserunt praesentium voluptatibus, accusantium a mollitia
-                            necessitatibus nostrum voluptatem numquam modi ab, sint rem.</p>
-                    </div> <!-- cd-faq-content -->
-                </li>
 
-                <li>
-                    <a class="cd-faq-trigger" href="">How do I upload files from my phone or tablet?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempore, placeat quisquam
-                            rerum! Eligendi fugit dolorum tenetur modi fuga nisi rerum, autem officiis quaerat quos.
-                            Magni quia, quo quibusdam odio. Error magni aperiam amet architecto adipisci aspernatur!
-                            Officia, quaerat magni architecto nostrum magnam fuga nihil, ipsum laboriosam similique
-                            voluptatibus facilis nobis? Eius non asperiores, nesciunt suscipit veniam blanditiis
-                            veritatis provident possimus iusto voluptas, eveniet architecto quidem quos molestias,
-                            aperiam eum reprehenderit dolores ad deserunt eos amet. Vero molestiae commodi unde dolor
-                            dicta maxime alias, velit, nesciunt cum dolorem, ipsam soluta sint suscipit maiores mollitia
-                            assumenda ducimus aperiam neque enim! Quas culpa dolorum ipsam? Ipsum voluptatibus numquam
-                            natus? Eligendi explicabo eos, perferendis voluptatibus hic sed ipsam rerum maiores officia!
-                            Beatae, molestias!</p>
-                    </div> <!-- cd-faq-content -->
-                </li>
+                        <img th:src="@{/resources/img/patern.png}" src="../img/patern.png" alt="Structure pattern"/>
 
-                <li>
-                    <a class="cd-faq-trigger" href="#0">How do I link to a file or folder?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis,
-                            reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit,
-                            magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.</p>
-                    </div> <!-- cd-faq-content -->
+                        <div class="pattern_text">
+                            <p>TEXT</p>
+                        </div>
+                        <hr class="pattern_hr"/>
+                        <div class="pattern_comments">
+                            <!-- Commentary -->
+                            <div class="pattern_comment_commentary">
+                                <form name="formCommentary">
+                                    <p>Leave a comment:</p>
+                                    <textarea ng-model="textareaCommentary.text" type="text"
+                                              class="pattern_comment_commentary_text" rows="6"/>
+                                    <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
+                                       class="cd-btn-send">Post Comment</a>
+                                    <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul> <!-- cd-faq-group -->
 

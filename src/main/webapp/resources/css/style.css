@@ -2053,3 +2053,43 @@ xsigin/signup popup
     padding-top: 20px;
     padding-bottom: 20px;
 }
+/* Patterns list */
+.pattern_text{
+    padding-bottom: 20px;
+    padding-top: 20px
+}
+
+.pattern_hr{
+    color: #ffffff;
+}
+.pattern_comments{
+    padding-top: 15px;
+}
+.pattern_comment{
+    display: block;
+    padding-bottom: 5px;
+}
+
+.pattern_comment_icon{
+    width: 36px;
+    display: inline;
+}
+
+.pattern_comment_data{
+    display: inline-block;
+    height: 36px;
+}
+.pattern_comment_data_text{
+    font-size: 8pt
+}
+
+.pattern_comment_block_text{
+    padding-bottom: 20px;
+}
+
+.pattern_comment_commentary{
+    padding-top: 5px;
+}
+.pattern_comment_commentary_text{
+    width: 100%;
+}
