@@ -90,7 +90,7 @@
                                               class="pattern_comment_commentary_text" rows="6"/>
                                     <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
                                        class="cd-btn-send">Post Comment</a>
-                                    <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
+                                    <span ng-show="errorMessage" class="cd-error-message-comm">Comment field empty!</span>
                                 </form>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                         <img alt="{{creationPatternObject.image.name}}"
                              data-ng-src="{{'data:image/png;base64,'+creationPatternObject.image.img}}"/>
                         <div class="pattern_text">
-                            <p>{{creationPatternObject.text}}</p>
+                            <p ng-bind-html="showTextPattern(creationPatternObject.text)"></p>
                         </div>
                         <hr class="pattern_hr"/>
                         <div class="pattern_comments">
@@ -117,7 +117,7 @@
                                               class="pattern_comment_commentary_text" rows="6"></textarea>
                                     <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
                                        class="cd-btn-send">Post Comment</a>
-                                    <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
+                                    <span ng-show="errorMessage" class="cd-error-message-comm">Comment field empty!</span>
                                 </form>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                         <img alt="{{structuralPatternObject.image.name}}"
                              data-ng-src="{{'data:image/png;base64,'+structuralPatternObject.image.img}}"/>
                         <div class="pattern_text">
-                            <p>{{structuralPatternObject.text}}</p>
+                            <p ng-bind-html="showTextPattern(structuralPatternObject.text)"></p>
                         </div>
                         <hr class="pattern_hr"/>
                         <div class="pattern_comments">
@@ -147,7 +147,7 @@
                                               class="pattern_comment_commentary_text" rows="6"/>
                                     <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
                                        class="cd-btn-send">Post Comment</a>
-                                    <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
+                                    <span ng-show="errorMessage" class="cd-error-message-comm">Comment field empty!</span>
                                 </form>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                         <img alt="{{behavioralPatternObject.image.name}}"
                              data-ng-src="{{'data:image/png;base64,'+behavioralPatternObject.image.img}}"/>
                         <div class="pattern_text">
-                            <p>{{behavioralPatternObject.text}}</p>
+                            <p ng-bind-html="showTextPattern(behavioralPatternObject.text)"></p>
                         </div>
                         <hr class="pattern_hr"/>
                         <div class="pattern_comments">
@@ -177,7 +177,7 @@
                                               class="pattern_comment_commentary_text" rows="6"></textarea>
                                     <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
                                        class="cd-btn-send">Post Comment</a>
-                                    <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
+                                    <span ng-show="errorMessage" class="cd-error-message-comm">Comment field empty!</span>
                                 </form>
                             </div>
                         </div>

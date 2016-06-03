@@ -329,16 +329,18 @@ myApp.controller('mainController', function ($scope, $http, $sce) {
         $scope.structuralPatternsObject = data;
     });
 
-    //GET LIST PATTERNS Structural: ->
+    //GET LIST PATTERNS Behavioral: ->
     $http.get('/behavioralPatterns').success(function (data) {
         $scope.behavioralPatternsObject = data;
     });
 
-    //GET LIST PATTERNS Structural: ->
+    //GET LIST PATTERNS Creation: ->
     $http.get('/creationPatterns').success(function (data) {
         $scope.creationPatternsObject = data;
     });
-
-
+    
+    $scope.showTextPattern = function (text) {       
+        return $sce.trustAsHtml(text)
+    }
 
 });
