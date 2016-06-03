@@ -22,11 +22,12 @@ public class DataRestController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public PageAllDTO intro_get() {
-        PageAllDTO page = null;
+        PageAllDTO page = new PageAllDTO(0L, "Empty", PageType.INTRO);
         try {
             page = pageService.findPageDTO(PageType.INTRO);
         } catch (MappingException e) {
-            return new PageAllDTO(0L, "Empty", PageType.INTRO);
+            //TODO Log.INFO
+            return page;
         }
         return page;
     }
@@ -35,11 +36,12 @@ public class DataRestController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public PageAllDTO behavioral_get() {
-        PageAllDTO page = null;
+        PageAllDTO page = new PageAllDTO(0L, "Empty", PageType.BEHAVIORAL);
         try {
             page = pageService.findPageDTO(PageType.BEHAVIORAL);
         } catch (MappingException e) {
-            return new PageAllDTO(0L, "Empty", PageType.BEHAVIORAL);
+            //TODO Log.INFO
+            return page;
         }
         return page;
     }
@@ -48,11 +50,12 @@ public class DataRestController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public PageAllDTO creational_get() {
-        PageAllDTO page = null;
+        PageAllDTO page = new PageAllDTO(0L, "Empty", PageType.CREATIONAL);
         try {
             page = pageService.findPageDTO(PageType.CREATIONAL);
         } catch (MappingException e) {
-            return new PageAllDTO(0L, "Empty", PageType.CREATIONAL);
+            //TODO Log.INFO
+            return page;
         }
         return page;
     }
@@ -61,13 +64,13 @@ public class DataRestController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public PageAllDTO structural_get() {
-        PageAllDTO page = null;
+        PageAllDTO page = new PageAllDTO(0L, "Empty", PageType.STRUCTURAL);
         try {
             page = pageService.findPageDTO(PageType.STRUCTURAL);
         } catch (MappingException e) {
-            return new PageAllDTO(0L, "Empty", PageType.STRUCTURAL);
+            //TODO Log.INFO
+            return page;
         }
         return page;
     }
-
 }

@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -50,9 +51,9 @@ public class AdminRestPatternController extends AbstractController {
             pattern.setImage(imageService.save(image));
             patternService.saveDTO(pattern);
             return new ResponseEntity<String>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
         }
+        return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
+
     }
 
     //GET LIST PATTERNS BY TAG -> CREATIONAL, STRUCTURAL, BEHAVIORAL
@@ -60,7 +61,7 @@ public class AdminRestPatternController extends AbstractController {
     @RequestMapping(path = "/getPatterns/{tag}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PatternIdAndTitleDTO> admin_patterns_get(@PathVariable PatternTag tag) {
-        List<PatternIdAndTitleDTO> patterns = null;
+        List<PatternIdAndTitleDTO> patterns = new ArrayList<>();
         if (validateNotNull(tag)) {
             patterns = patternService.findDTO(tag);
         }
@@ -69,13 +70,16 @@ public class AdminRestPatternController extends AbstractController {
 
     //DELETE BY ID
     @RequestMapping(path = "/deletePattern/{id}", method = RequestMethod.DELETE)
-    public void admin_pattern_delete(@PathVariable Long id) {
+    public ResponseEntity<?> admin_pattern_delete(@PathVariable Long id) {
         if (id > 0) {
             ImageEntity image = patternService.findOne(id).getImage();
             image.setAvailable(true);
             imageService.update(image);
             patternService.delete(id);
+            return new ResponseEntity<String>(HttpStatus.OK);
         }
+        return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
+
     }
 
     //GET Patter BY ID

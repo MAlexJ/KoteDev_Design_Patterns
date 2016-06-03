@@ -31,8 +31,10 @@ public class RegisterController {
             account.setStatus(UserStatus.ACTIVE);
             accountService.saveDTO(account);
         } catch (FailedCreateAccountException e) {
+            //TODO LOG.INFO
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
+            //TODO LOG.ERROR
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         }
         return new ResponseEntity<String>(HttpStatus.OK);
@@ -44,8 +46,10 @@ public class RegisterController {
             AccountAllDTO accountDTO = accountService.findByEmail(account.getEmail());
             emailUtil.send(accountDTO);
         } catch (NoFoundUserException e) {
+            //TODO LOG.INFO
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
+            //TODO LOG.ERROR
             return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
         }
         return new ResponseEntity<String>(HttpStatus.OK);

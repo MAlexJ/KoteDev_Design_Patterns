@@ -26,9 +26,7 @@ public class AccountEmailDTO extends BaseDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         AccountEmailDTO that = (AccountEmailDTO) o;
-
         return email != null ? email.equals(that.email) : that.email == null;
 
     }

@@ -31,7 +31,8 @@ public class PatternIdAndTitleDTO extends BaseDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PatternIdAndTitleDTO that = (PatternIdAndTitleDTO) o;
-        return id != null ? id.equals(that.id) : that.id == null && (title != null ? title.equals(that.title) : that.title == null);
+        return id != null ? id.equals(that.id) : that.id == null
+                && (title != null ? title.equals(that.title) : that.title == null);
     }
 
     @Override

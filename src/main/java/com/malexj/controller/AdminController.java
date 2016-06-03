@@ -42,7 +42,7 @@ public class AdminController {
         return "admin/deletePage";
     }
 
-    // Pattern
+    // Image
     @RequestMapping(path = "/image", method = RequestMethod.GET)
     public String admin_image(){
         return "admin/image";

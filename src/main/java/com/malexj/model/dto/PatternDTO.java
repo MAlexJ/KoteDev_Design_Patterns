@@ -53,13 +53,10 @@ public class PatternDTO extends BaseDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PatternDTO that = (PatternDTO) o;
-
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (tag != that.tag) return false;
-        if (text != null ? !text.equals(that.text) : that.text != null) return false;
-        return image != null ? image.equals(that.image) : that.image == null;
+        return title != null ? title.equals(that.title) : that.title == null
+                && tag == that.tag && (text != null ? text.equals(that.text) : that.text == null
+                && (image != null ? image.equals(that.image) : that.image == null));
 
     }
 

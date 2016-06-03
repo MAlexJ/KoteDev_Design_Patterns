@@ -1,8 +1,5 @@
 package com.malexj.controller;
 
-
-import com.malexj.service.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,9 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(path = "/")
 public class HomeController {
-
-    @Autowired
-    private AccountService accountService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String index_GET(){

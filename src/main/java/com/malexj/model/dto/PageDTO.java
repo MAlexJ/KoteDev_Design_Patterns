@@ -30,11 +30,9 @@ public class PageDTO extends BaseDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PageDTO pageDTO = (PageDTO) o;
-
-        if (text != null ? !text.equals(pageDTO.text) : pageDTO.text != null) return false;
-        return type == pageDTO.type;
+        return text != null ? text.equals(pageDTO.text) : pageDTO.text == null
+                && type == pageDTO.type;
 
     }
 

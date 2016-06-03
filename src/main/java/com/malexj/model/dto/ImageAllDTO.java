@@ -43,12 +43,10 @@ public class ImageAllDTO extends BaseDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ImageAllDTO that = (ImageAllDTO) o;
-
-        if (isAvailable != that.isAvailable) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return Arrays.equals(img, that.img);
+        return isAvailable == that.isAvailable
+                && (name != null ? name.equals(that.name) : that.name == null
+                && Arrays.equals(img, that.img));
 
     }
 

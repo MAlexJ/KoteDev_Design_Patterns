@@ -45,13 +45,10 @@ public class PageAllDTO extends BaseDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PageAllDTO that = (PageAllDTO) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (text != null ? !text.equals(that.text) : that.text != null) return false;
-        return type == that.type;
-
+        return id != null ? id.equals(that.id) : that.id == null
+                && (text != null ? text.equals(that.text) : that.text == null
+                && type == that.type);
     }
 
     @Override

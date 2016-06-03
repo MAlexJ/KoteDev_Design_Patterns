@@ -17,7 +17,7 @@ public class AdminRestUsersController {
     @Autowired
     private AccountService accountService;
 
-    //GET
+    //GET LIST
     @RequestMapping(path = "/getUsers", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -25,12 +25,13 @@ public class AdminRestUsersController {
         return accountService.findAllDTO();
     }
 
+    //GET ONE
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/getUser/{id}", method = RequestMethod.GET)
     public AccountAllDTO admin_page_delete(@PathVariable Long id) {
         if (id > 0) {
             return accountService.findById(id);
         }
-        return null;
+        return new AccountAllDTO();
     }
 }

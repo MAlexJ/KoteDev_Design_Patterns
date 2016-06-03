@@ -20,6 +20,7 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
     $scope.regExistUser = false;
     // Validate Email
     $scope.regValidUEmail = false;
+    $scope.regValidUEmailIncorrect = false;
     // Validate Password
     $scope.regValidPassword = false;
 
@@ -117,10 +118,10 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
                 && !angular.isUndefined(reg.password)) {
                 var EMAIL_REG = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 
-                if (!EMAIL_REG.test(reg.email)) {
-                    $scope.regValidUEmail = true;
+                if (!EMAIL_REG.test(reg.email) && reg.email != '') {
+                    $scope.regValidUEmailIncorrect = true;
                     $timeout(function () {
-                        $scope.regValidUEmail = false;
+                        $scope.regValidUEmailIncorrect = false;
                     }, 1500);
                 }
 
@@ -338,8 +339,8 @@ myApp.controller('mainController', function ($scope, $http, $sce) {
     $http.get('/creationPatterns').success(function (data) {
         $scope.creationPatternsObject = data;
     });
-    
-    $scope.showTextPattern = function (text) {       
+
+    $scope.showTextPattern = function (text) {
         return $sce.trustAsHtml(text)
     }
 

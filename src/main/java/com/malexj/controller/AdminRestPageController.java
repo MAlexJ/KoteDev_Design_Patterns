@@ -9,6 +9,7 @@ import com.malexj.util.ConvertToListPageTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,10 +44,12 @@ public class AdminRestPageController {
     }
 
     @RequestMapping(path = "/deletePage/{id}", method = RequestMethod.DELETE)
-    public void admin_page_delete(@PathVariable Long id) {
+    public ResponseEntity<?> admin_page_delete(@PathVariable Long id) {
         if (id > 0) {
             pageService.delete(id);
+            return new ResponseEntity<String>(HttpStatus.OK);
         }
+        return new ResponseEntity<String>(HttpStatus.FORBIDDEN);
     }
 
     //UPDATE
@@ -60,7 +63,7 @@ public class AdminRestPageController {
     @RequestMapping(path = "/updateGetPage/{id}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public PageAllDTO admin_page_update_get(@PathVariable Long id) {
-        PageAllDTO page = null;
+        PageAllDTO page = new PageAllDTO();
         if (id > 0) {
             page = pageService.findDTO(id);
         }

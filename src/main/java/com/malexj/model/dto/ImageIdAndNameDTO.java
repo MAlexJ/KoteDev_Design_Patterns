@@ -29,11 +29,9 @@ public class ImageIdAndNameDTO extends BaseDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ImageIdAndNameDTO that = (ImageIdAndNameDTO) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        return name != null ? name.equals(that.name) : that.name == null;
+        return id != null ? id.equals(that.id) : that.id == null
+                && (name != null ? name.equals(that.name) : that.name == null);
 
     }
 
