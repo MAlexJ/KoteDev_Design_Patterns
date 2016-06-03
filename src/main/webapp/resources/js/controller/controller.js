@@ -117,7 +117,7 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
                 && !angular.isUndefined(reg.password)) {
                 var EMAIL_REG = /^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 
-                if (!EMAIL_REG.test(reg.email)){
+                if (!EMAIL_REG.test(reg.email)) {
                     $scope.regValidUEmail = true;
                     $timeout(function () {
                         $scope.regValidUEmail = false;
@@ -142,7 +142,7 @@ myApp.controller('loginController', function ($scope, $http, $cookieStore, $time
                                 $scope.reg = undefined;
                             }, 1200);
                         })
-                        .error(function () {                          
+                        .error(function () {
                             $scope.regExistUser = true;
                             $timeout(function () {
                                 $scope.regExistUser = false;
@@ -323,5 +323,22 @@ myApp.controller('mainController', function ($scope, $http, $sce) {
         $scope.htmlStructural = data;
         $scope.sceStructural = $sce;
     });
+
+    //GET LIST PATTERNS Structural: ->
+    $http.get('/structuralPatterns').success(function (data) {
+        $scope.structuralPatternsObject = data;
+    });
+
+    //GET LIST PATTERNS Structural: ->
+    $http.get('/behavioralPatterns').success(function (data) {
+        $scope.behavioralPatternsObject = data;
+    });
+
+    //GET LIST PATTERNS Structural: ->
+    $http.get('/creationPatterns').success(function (data) {
+        $scope.creationPatternsObject = data;
+    });
+
+
 
 });

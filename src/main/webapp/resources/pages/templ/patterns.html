@@ -97,49 +97,45 @@
                     </div>
                 </li>
 
-                <li>
-                    <a class="cd-faq-trigger" href="#0">How do I sign up?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi cupiditate et laudantium esse
-                            adipisci consequatur modi possimus accusantium vero atque excepturi nobis in doloremque
-                            repudiandae soluta non minus dolore voluptatem enim reiciendis officia voluptates, fuga
-                            ullam? Voluptas reiciendis cumque molestiae unde numquam similique quas doloremque non,
-                            perferendis doloribus necessitatibus itaque dolorem quam officia atque perspiciatis dolore
-                            laudantium dolor voluptatem eligendi? Aliquam nulla unde voluptatum molestiae, eos fugit
-                            ullam, consequuntur, saepe voluptas quaerat deleniti. Repellendus magni sint temporibus,
-                            accusantium rem commodi?</p>
-                    </div> <!-- cd-faq-content -->
-                </li>
-
-                <li>
-                    <a class="cd-faq-trigger" href="#0">Can I remove a post?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis,
-                            reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit,
-                            magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.</p>
-                    </div> <!-- cd-faq-content -->
-                </li>
-
-                <li>
-                    <a class="cd-faq-trigger" href="#0">How do reviews work?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis,
-                            reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit,
-                            magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.</p>
-                    </div> <!-- cd-faq-content -->
+                <li ng-repeat="creationPatternObject in creationPatternsObject">
+                    <a class="cd-faq-trigger" ng-click="loadingBtn = !loadingBtn" href="">
+                        {{creationPatternObject.title}}
+                    </a>
+                    <div ng-show="loadingBtn" class="cd-faq-content show_{{creationPatternObject.id}}">
+                        <img alt="{{creationPatternObject.image.name}}"
+                             data-ng-src="{{'data:image/png;base64,'+creationPatternObject.image.img}}"/>
+                        <div class="pattern_text">
+                            <p>{{creationPatternObject.text}}</p>
+                        </div>
+                        <hr class="pattern_hr"/>
+                        <div class="pattern_comments">
+                            <!-- Commentary -->
+                            <div class="pattern_comment_commentary">
+                                <form name="formCommentary">
+                                    <p>Leave a comment:</p>
+                                    <textarea ng-model="textareaCommentary.text" type="text"
+                                              class="pattern_comment_commentary_text" rows="6"></textarea>
+                                    <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
+                                       class="cd-btn-send">Post Comment</a>
+                                    <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul> <!-- cd-faq-group -->
 
             <ul id="mobile" class="cd-faq-group">
                 <li class="cd-faq-title"><h2>Structural patterns</h2></li>
-                <li>
-                    <a class="cd-faq-trigger" href="">TITLE</a>
-                    <div class="cd-faq-content">
-
-                        <img th:src="@{/resources/img/patern.png}" src="../img/patern.png" alt="Structure pattern"/>
-
+                <li ng-repeat="structuralPatternObject in structuralPatternsObject">
+                    <a class="cd-faq-trigger" ng-click="loadingBtn = !loadingBtn" href="">
+                        {{structuralPatternObject.title}}
+                    </a>
+                    <div ng-show="loadingBtn" class="cd-faq-content show_{{structuralPatternObject.id}}">
+                        <img alt="{{structuralPatternObject.image.name}}"
+                             data-ng-src="{{'data:image/png;base64,'+structuralPatternObject.image.img}}"/>
                         <div class="pattern_text">
-                            <p>TEXT</p>
+                            <p>{{structuralPatternObject.text}}</p>
                         </div>
                         <hr class="pattern_hr"/>
                         <div class="pattern_comments">
@@ -157,66 +153,39 @@
                         </div>
                     </div>
                 </li>
-            </ul> <!-- cd-faq-group -->
+            </ul>
 
             <ul id="account" class="cd-faq-group">
                 <li class="cd-faq-title"><h2>Behavioral patterns</h2></li>
-                <li>
-                    <a class="cd-faq-trigger" href="#0">How do I change my password?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis earum autem consectetur
-                            labore eius tenetur esse, in temporibus sequi cum voluptatem vitae repellat nostrum odio
-                            perspiciatis dolores recusandae necessitatibus, unde, deserunt voluptas possimus veniam
-                            magni soluta deleniti! Architecto, quidem, totam. Fugit minus odit unde ea cupiditate ab
-                            aperiam sed dolore facere nihil laboriosam dolorum repellat deleniti aliquam fugiat
-                            laudantium delectus sint iure odio, necessitatibus rem quisquam! Ipsum praesentium quam nisi
-                            sint, impedit sapiente facilis laudantium mollitia quae fugiat similique. Dolor maiores
-                            aliquid incidunt commodi doloremque rem! Quaerat, debitis voluptatem vero qui enim, sunt
-                            reiciendis tempore inventore maxime quasi fugiat accusamus beatae modi voluptates iste
-                            officia esse soluta tempora labore quisquam fuga, cum. Sint nemo iste nulla accusamus quam
-                            qui quos, vero, minus id. Eius mollitia consequatur fugit nam consequuntur nesciunt illo id
-                            quis reprehenderit obcaecati voluptates corrupti, minus! Possimus, perspiciatis!</p>
-                    </div> <!-- cd-faq-content -->
+                <li ng-repeat="behavioralPatternObject in behavioralPatternsObject">
+                    <a class="cd-faq-trigger" ng-click="loadingBtn = !loadingBtn" href="">
+                        {{behavioralPatternObject.title}}
+                    </a>
+                    <div ng-show="loadingBtn" class="cd-faq-content show_{{behavioralPatternObject.id}}">
+                        <img alt="{{behavioralPatternObject.image.name}}"
+                             data-ng-src="{{'data:image/png;base64,'+behavioralPatternObject.image.img}}"/>
+                        <div class="pattern_text">
+                            <p>{{behavioralPatternObject.text}}</p>
+                        </div>
+                        <hr class="pattern_hr"/>
+                        <div class="pattern_comments">
+                            <!-- Commentary -->
+                            <div class="pattern_comment_commentary">
+                                <form name="formCommentary">
+                                    <p>Leave a comment:</p>
+                                    <textarea ng-model="textareaCommentary.text" type="text"
+                                              class="pattern_comment_commentary_text" rows="6"></textarea>
+                                    <a ng-click="postComment(formCommentary, textareaCommentary)" href=""
+                                       class="cd-btn-send">Post Comment</a>
+                                    <span ng-show="errorMessage" class="cd-error-message-comm">Error message here! Username</span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </li>
-
-                <li>
-                    <a class="cd-faq-trigger" href="#0">How do I delete my account?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo tempore soluta, minus magnam
-                            non blanditiis dolore, in nam voluptas nobis minima deserunt deleniti id animi amet,
-                            suscipit consequuntur corporis nihil laborum facere temporibus. Qui inventore, doloribus
-                            facilis, provident soluta voluptas excepturi perspiciatis fugiat odit vero! Optio assumenda
-                            animi at! Assumenda doloremque nemo est sequi eaque, ipsum id, labore rem nisi, amet
-                            similique vel autem dolore totam facilis deserunt. Mollitia non ut libero unde accusamus
-                            praesentium sint maiores, illo, nemo aliquid?</p>
-                    </div> <!-- cd-faq-content -->
-                </li>
-
-                <li>
-                    <a class="cd-faq-trigger" href="#0">How do I change my account settings?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis,
-                            reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit,
-                            magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.</p>
-                    </div> <!-- cd-faq-content -->
-                </li>
-
-                <li>
-                    <a class="cd-faq-trigger" href="#0">I forgot my password. How do I reset it?</a>
-                    <div class="cd-faq-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum at aspernatur iure facere ab
-                            a corporis mollitia molestiae quod omnis minima, est labore quidem nobis accusantium ad
-                            totam sunt doloremque laudantium impedit similique iste quasi cum! Libero fugit at
-                            praesentium vero. Maiores non consequuntur rerum, nemo a qui repellat quibusdam architecto
-                            voluptatem? Sequi, possimus, cupiditate autem soluta ipsa rerum officiis cum libero delectus
-                            explicabo facilis, odit ullam aperiam reprehenderit! Vero ad non harum veritatis tempore
-                            beatae possimus, ex odio quo.</p>
-                    </div> <!-- cd-faq-content -->
-                </li>
-            </ul> <!-- cd-faq-group -->
-        </div> <!-- cd-faq-items -->
+            </ul>
+        </div>
         <a href="" style="background: url(/resources/img/cd-logo-close.svg) no-repeat center center "
            class="cd-close-panel"></a>
-    </section> <!-- cd-faq -->
-
+    </section>
 </div>
